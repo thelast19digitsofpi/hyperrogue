@@ -57,6 +57,7 @@ int* killtable[] = {
     &kills[moBrownBug], &kills[moAcidBird],
     &kills[moFallingDog], &kills[moVariantWarrior], &kills[moWestHawk],
     &kills[moPike], &kills[moRusalka], &kills[moFrog], &kills[moPhaser], &kills[moVaulter],
+    &kills[moFlat],
     NULL
     };
 
@@ -834,8 +835,7 @@ EX void fightmessage(eMonster victim, eMonster attacker, bool stun, flagtype fla
     playSound(NULL, "hit-crush"+pick123());
     addMessage(XLAT("%The1 eats %the2!", attacker, victim));
     }
-
-  else if(flags & AF_EAT) {
+  else if((flags & AF_EAT) && victim != moFlat) {
     playSound(NULL, "hit-crush"+pick123());
     addMessage(XLAT("%The1 eats %the2!", attacker, victim));
     }
@@ -883,6 +883,11 @@ EX void fightmessage(eMonster victim, eMonster attacker, bool stun, flagtype fla
         addMessage(XLAT("You trick %the1.", victim)); // normal
       else
         addMessage(XLAT("You pierce %the1.", victim)); // normal
+      }
+    else if(victim == moFlat) {
+      playSound(NULL, "hit-crush"+pick123());
+      //addMessage(XLAT("You jump on %the1.", victim));
+      addMessage(XLAT("You jump on the Flat Beast.")); // because I don't know how translations work yet
       }
     else if(!peace::on) {
       playSound(NULL, "hit-sword"+pick123());
@@ -1044,7 +1049,7 @@ EX bool monsterPushable(cell *c2) {
   }  
 
 EX bool should_switchplace(cell *c1, cell *c2) {
-  if(isPrincess(c2->monst) || among(c2->monst, moGolem, moIllusion, moMouse, moFriendlyGhost))
+  if(isPrincess(c2->monst) || among(c2->monst, moGolem, moIllusion, moMouse, moFriendlyGhost, moFlat))
     return true;
   
   if(peace::on) return c2->monst && !isMultitile(c2->monst);
@@ -1053,11 +1058,11 @@ EX bool should_switchplace(cell *c1, cell *c2) {
 
 EX bool switchplace_prevent(cell *c1, cell *c2, bool checkonly) {
   if(!should_switchplace(c1, c2)) return false;
-  if(c1->monst && c1->monst != moFriendlyIvy) {
+  if(c1->monst && c1->monst != moFriendlyIvy && c2->monst != moFlat) {
     if(!checkonly) addMessage(XLAT("There is no room for %the1!", c2->monst));
     return true;
     }
-  if(passable(c1, c2, P_ISFRIEND | (c2->monst == moTameBomberbird ? P_FLYING : 0))) return false;
+  if(c2->monst != moFlat && passable(c1, c2, P_ISFRIEND | (c2->monst == moTameBomberbird ? P_FLYING : 0))) return false;
   if(warningprotection_hit(c2->monst)) return true;
   return false;
   }
@@ -1067,6 +1072,13 @@ EX void handle_switchplaces(cell *c1, cell *c2, bool& switchplaces) {
     bool pswitch = false;
     if(c2->monst == moMouse)
       princess::mouseSqueak(c2);
+    else if(c2->monst == moFlat) {
+      // Flat Beasts are handled by switching with them and killing the other monster
+      attackMonster(c2, AF_EAT, moPlayer);
+      addMessage(XLAT("You jump on %the1.", moFlat));
+      playSound(NULL, "hit-crush"+pick123());
+      pswitch = true;
+      }
     else if(isPrincess(c2->monst)) {
       princess::line(c2);
       princess::move(match(c2, c1));

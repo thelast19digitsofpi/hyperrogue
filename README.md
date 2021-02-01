@@ -1,4 +1,17 @@
+# HyperRogue modifications by thelast19digitsofpi
+Things already made:
+* New pattern and quotient (currently called the Lost Rooms pattern). For some reason, the two don't seem to work well.
+* New land (Lost Rooms) that uses the pattern; I'm working on a second one.
+	* Note: currently the Lost Rooms is set to have extremely high spawn chance near Icy Land, to make it easier to test.
+* New monster (Flat Beast) that is killed by actually moving into it (like chess captures).
+	* I don't think this monster properly works with Orb of Discord or allies.
+
+It is not finished yet (for example, I want to investigate why my pattern and quotient, which should be the same thing, are not compatible).
+
+---
+
 # HyperRogue
+<!--
 <p align="right">
 <a href="https://travis-ci.org/zenorogue/hyperrogue/builds">
 <img align="right" src="https://badges.herokuapp.com/travis/zenorogue/hyperrogue?branch=master&env=TRAVIS_BUILD_SYSTEM=autotools&label=autotools" alt="TravisCI badge">
@@ -10,6 +23,7 @@
 <p align="left">
 <b>Current version: 11.3f</b>
 </p>
+-->
 
 A puzzle roguelike in the hyperbolic plane. See the [HyperRogue website](http://roguetemple.com/z/hyper.php) for detailed and most up-to-date information.
 Compiled executables can be downloaded from [itch.io](https://zenorogue.itch.io/hyperrogue) and from the [HyperRogue website](http://www.roguetemple.com/z/hyper/download.php).

@@ -284,6 +284,50 @@ EX int fiftyval200(cell *c) {
   return i;
   }
 
+
+// irregular {14,14} pattern
+EX int i1414val(heptagon* h) {
+  int i = h->i1414val;
+  if(quotient && geometry != gRoomsQuotient) return 0;
+  return i; // not sure what to do here?
+  }
+
+EX int i1414val(cell *c) {
+  if(ctof(c)) return i1414val(c->master);
+  else if(sphere) return 0;
+  else {
+    int a[3], qa=0;
+    auto ar = gp::get_masters(c);
+    for(int i=0; i<3; i++)
+      a[qa++] = i1414val(ar[i]);
+    sort(a, a+qa);
+    
+    // assume there are 3
+    
+    //special case for hex between 0,4,28 and similar
+    if(a[0] < 4) return (a[2] - a[1] == 24 ? a[2] : a[1]) + 56;
+    if(a[1] < 32) return (a[2] - a[1] == 24 ? a[2] : a[1]) + 84;
+    if(a[0] < 32) {
+      // adjacent to a wall pair
+      if ((a[1]^a[2])==2) return a[0] + 112;
+      else {
+        // only other option is adjacent to a 4..28, a 32..56, and a 32..56 from the other parity
+        // need to find out which one it is
+        int c = ((a[1] - a[0]) & 3) ? a[1] : a[2];
+        if((c^a[0])&2)
+          // example: 4,33,48, c = 33, c^a[0] = 0 which does not have the 2 bit on
+          return a[0] + 140;
+        else
+          return a[0] + 168; // maximum is 199
+        }
+      }
+    
+    return 255; // not really sure how to do this
+    }
+  }
+
+
+
 /*
 {0,1,2} 15+0..15+6
 {1,2,9},22+0..22+6
@@ -596,6 +640,7 @@ EX namespace patterns {
     PAT_EMERALD = 'f',
     PAT_PALACE = 'p',
     PAT_FIELD = 'F',
+    PAT_I1414 = '4',
     PAT_DOWN = 'H',
     PAT_COLORING = 'C',
     PAT_SIBLING = 'S',
@@ -1180,7 +1225,29 @@ EX namespace patterns {
       if(symRotation && si.id >= 4)
         si.id -= ((si.id/4-1) % 7) * 4; 
       }
-    
+      
+    else if(pat == PAT_I1414 && stdhyperbolic) {
+      si.id = i1414val(c);
+      if(!euclid) {
+        // thelast19digitsofpi: I'm not sure what this is doing but it seems to search for directions?
+        int tcdir = 0, tbest = (si.id&3);
+        for(int i=0; i<c->type; i++) {
+          cell *c2 = c->move(i);
+          if(c2) {
+            int t2 = i1414val(c2);
+            if((si.id&3) == (t2&3) && t2 > tbest)
+              tbest = t2, tcdir = i;
+            }
+          }
+        si.dir = tcdir;
+        }
+      applySym0123(si.id, sub);
+      if(symRotation && si.id >= 4 && si.id < 64) {
+        // there are certain advantages to being very similar to the Palace pattern
+        si.id -= ((si.id/4-1) % 7) * 4;
+        }
+      }
+      
     else if(pat == PAT_PALACE && euclid) {
       si.id = fiftyval049(c);
       si.symmetries = 6;
@@ -1658,6 +1725,7 @@ EX namespace patterns {
     ep.extra_params["pa"] = polara50(c);
     ep.extra_params["pb"] = polarb50(c);
     ep.extra_params["pd"] = cdist50(c);
+    ep.extra_params["14"] = i1414val(c);
     ep.extra_params["fu"] = fieldpattern::fieldval_uniq(c);
     ep.extra_params["threecolor"] = pattern_threecolor(c);
     ep.extra_params["chess"] = chessvalue(c);
@@ -1902,6 +1970,22 @@ EX namespace patterns {
           }
         return res;
         }
+      case '4': {
+        int colors[4] = {0x800000, 0x008000, 0x000080, 0xcccc00};
+        int i = i1414val(c);
+        int t = i/4;
+        if(t<=7 || (t>=29 && t<=35))
+          return colors[(i%2) * 2];
+        else if(t<=28)
+          return colors[(i%2) * 2 + 1];
+        else
+          return 0x202020;
+        }
+      case '$': {
+        // this is easy
+        int colors[4] = {0x1800000, 0x1008000, 0x000080, 0x404040};
+        return colors[i1414val(c) % 4];
+        }
       case 'k': {
         /* just keep the old color */
         return c->landparam;
@@ -1954,6 +2038,8 @@ EX namespace patterns {
       dialog::addSelItem(XLAT("zebra pattern"), "zebra", 'z');
       dialog::addSelItem(XLAT("four triangles"), "zebra", 't');
       dialog::addSelItem(XLAT("three stripes"), "zebra", 'x');
+      dialog::addSelItem(XLAT("great wall network"), "rooms", '4');
+      dialog::addSelItem(XLAT("another four elements"), "rooms", '$');
       }
     
     if(a4)
@@ -2100,7 +2186,7 @@ EX namespace patterns {
           };
         }
       
-      else if((uni >= 'a' && uni <= 'z') || (uni >= 'A' && uni <= 'Z') || among(uni, '#', '=', '/')) {
+      else if((uni >= 'a' && uni <= 'z') || (uni >= 'A' && uni <= 'Z') || among(uni, '#', '=', '/', '4', '$')) {
         if(instant)
           stop_game();
         whichCanvas = uni;
@@ -2120,6 +2206,8 @@ EX namespace patterns {
           whichPattern = PAT_PALACE, subpattern_flags = SPF_SYM0123 | SPF_ROT;
         if(uni == 'z' && a46)
           whichPattern = PAT_COLORING, subpattern_flags = SPF_CHANGEROT | SPF_SYM0123;
+        if((uni == '4' || uni == '$') && stdhyperbolic)
+          whichPattern = PAT_I1414, subpattern_flags = SPF_ROT;
         }
       else if(doexiton(sym, uni)) popScreen();
       };    
@@ -2156,6 +2244,9 @@ EX namespace patterns {
     if(stdhyperbolic || euclid)
       dialog::addBoolItem(XLAT("Palace Pattern"), (whichPattern == PAT_PALACE), PAT_PALACE);
     
+    if(stdhyperbolic)
+      dialog::addBoolItem(XLAT("Lost Rooms Pattern"), (whichPattern == PAT_I1414), PAT_I1414);
+    
     if(geosupport_chessboard())
       dialog::addBoolItem(XLAT("chessboard"), (whichPattern == PAT_CHESS), PAT_CHESS);
 
@@ -2180,6 +2271,7 @@ EX namespace patterns {
       (whichPattern == PAT_EMERALD && (stdhyperbolic || a38)) ||
       (whichPattern == PAT_PALACE && stdhyperbolic) ||
       (whichPattern == PAT_ZEBRA && stdhyperbolic) ||
+      (whichPattern == PAT_I1414 && stdhyperbolic) ||
       (whichPattern == PAT_SIBLING && sphere) ||
       (whichPattern == PAT_ZEBRA && a457)) {
       dialog::addBoolItem(XLAT("rotational symmetry"), subpattern_flags & SPF_ROT, '0');
@@ -2203,6 +2295,7 @@ EX namespace patterns {
       (whichPattern == PAT_EMERALD && (stdhyperbolic || a38)) ||
       (whichPattern == PAT_PALACE && stdhyperbolic) ||
       (whichPattern == PAT_ZEBRA && stdhyperbolic) ||
+      (whichPattern == PAT_I1414 && stdhyperbolic) ||
       (whichPattern == PAT_COLORING && a46) ||
       (whichPattern == PAT_ZEBRA && a457)
       ) {
@@ -2257,7 +2350,7 @@ EX namespace patterns {
     keyhandler = [] (int sym, int uni) {
       dialog::handleNavigation(sym, uni);
       
-      if(among(uni, PAT_EMERALD, PAT_PALACE, PAT_ZEBRA, PAT_DOWN, PAT_FIELD, PAT_COLORING, PAT_SIBLING, PAT_CHESS, PAT_SINGLETYPE, PAT_TYPES)) {
+      if(among(uni, PAT_EMERALD, PAT_PALACE, PAT_ZEBRA, PAT_DOWN, PAT_I1414, PAT_FIELD, PAT_COLORING, PAT_SIBLING, PAT_CHESS, PAT_SINGLETYPE, PAT_TYPES)) {
         if(whichPattern == uni) whichPattern = PAT_NONE;
         else whichPattern = ePattern(uni);
         #if CAP_EDIT

@@ -150,6 +150,101 @@ struct hrmap_quotient : hrmap_standard {
         break;
         }
       
+      case gRoomsQuotient: {
+        // had to move the numbers around so 0,4,8,... becomes 0,1,2,... and the 15-29, 30-44, and 45-59 blocks are reversed
+        connections = {
+          1, 7, 6, 5, 4, 3, 2, // 0
+          12, 21, 51, 11, 7, 0, 2, // 1
+          13, 20, 50, 12, 1, 0, 3,
+          14, 19, 49, 13, 2, 0, 4,
+          8, 18, 48, 14, 3, 0, 5,
+          9, 17, 47, 8, 4, 0, 6,
+          10, 16, 46, 9, 5, 0, 7,
+          11, 15, 45, 10, 6, 0, 1, // 7
+          4, 5, 47, 58, 36, 28, 18, // 8
+          5, 6, 46, 57, 35, 27, 17,
+          6, 7, 45, 56, 34, 26, 16,
+          7, 1, 51, 55, 33, 25, 15,
+          1, 2, 50, 54, 32, 24, 21,
+          2, 3, 49, 53, 31, 23, 20,
+          3, 4, 48, 52, 30, 22, 19, // 14
+          26, 34, 37, 45, 7, 11, 25, // 15
+          27, 35, 38, 46, 6, 10, 26,
+          28, 36, 39, 47, 5, 9, 27,
+          22, 30, 40, 48, 4, 8, 28,
+          23, 31, 41, 49, 3, 14, 22,
+          24, 32, 42, 50, 2, 13, 23,
+          25, 33, 43, 51, 1, 12, 24, // 21
+          18, 28, 29, 23, 19, 14, 30, // 22
+          19, 22, 29, 24, 20, 13, 31,
+          20, 23, 29, 25, 21, 12, 32,
+          21, 24, 29, 26, 15, 11, 33,
+          15, 25, 29, 27, 16, 10, 34,
+          16, 26, 29, 28, 17, 9, 35,
+          17, 27, 29, 22, 18, 8, 36,
+          28, 27, 26, 25, 24, 23, 22,
+          41, 40, 18, 22, 14, 52, 49,
+          42, 41, 19, 23, 13, 53, 50,
+          43, 42, 20, 24, 12, 54, 51,
+          37, 43, 21, 25, 11, 55, 45,
+          38, 37, 15, 26, 10, 56, 46,
+          39, 38, 16, 27, 9, 57, 47,
+          40, 39, 17, 28, 8, 58, 48,
+          33, 45, 15, 34, 38, 44, 43,
+          34, 46, 16, 35, 39, 44, 37,
+          35, 47, 17, 36, 40, 44, 38,
+          36, 48, 18, 30, 41, 44, 39,
+          30, 49, 19, 31, 42, 44, 40,
+          31, 50, 20, 32, 43, 44, 41,
+          32, 51, 21, 33, 37, 44, 42,
+          43, 37, 38, 39, 40, 41, 42,
+          56, 10, 7, 15, 37, 33, 55,
+          57, 9, 6, 16, 38, 34, 56,
+          58, 8, 5, 17, 39, 35, 57,
+          52, 14, 4, 18, 40, 36, 58,
+          53, 13, 3, 19, 41, 30, 52,
+          54, 12, 2, 20, 42, 31, 53,
+          55, 11, 1, 21, 43, 32, 54,
+          48, 58, 59, 53, 49, 30, 14,
+          49, 52, 59, 54, 50, 31, 13,
+          50, 53, 59, 55, 51, 32, 12,
+          51, 54, 59, 56, 45, 33, 11,
+          45, 55, 59, 57, 46, 34, 10,
+          46, 56, 59, 58, 47, 35, 9,
+          47, 57, 59, 52, 48, 36, 8,
+          58, 57, 56, 55, 54, 53, 52
+
+          };
+        
+        for(int i = 0; i < 60; i++) {
+          for(int j = 0; j < 7; j++) {
+            connections[i*7 + j] *= 7;
+            }
+          }
+        
+        for(int i = 0; i < 60; i++) {
+          for(int j = 0; j < 7; j++) {
+            int a = i*7+j;
+            int c = connections[a]/7;
+            bool good = false;
+            if(i==59) printf("connections[59][%d] goes to heptagon %d\n", j, c);
+            for(int d = 0; d < 7; d++) {
+              // which of c's connections leads back to i
+              if(i==59) printf("connections[%d][%d] is %d\n", c, d, connections[c*7+d]);
+              if (connections[c*7+d] / 7 == i) {
+                //printf("changing from %d to %d\n", connections[a], c*7+d);
+                connections[a] = c*7+d;
+                good = true;
+                break;
+                }
+              }
+            if(!good) printf("not found: %d %d (to %d)\n", i, j, c);
+            }
+          }
+        
+        break;
+        }
+      
       case gKleinQuartic: {
         connections = {
           /* 000 */ 7, 14, 21, 28, 35, 42, 49,
@@ -367,6 +462,7 @@ struct hrmap_quotient : hrmap_standard {
         h->emeraldval = 0;
         h->zebraval = 0;
         h->fiftyval = 0;
+        h->i1414val = 0;
         h->fieldval = S7*i;
         h->rval0 = h->rval1 = 0; h->cdata = NULL;
         h->distance = 0;
@@ -385,7 +481,7 @@ struct hrmap_quotient : hrmap_standard {
     vector<heptagon*> by_dist;
     by_dist.push_back(allh[0]);
     for(int i=0; i<TOT; i++) {
-      if(i >= isize(by_dist)) { printf("too fast\n"); exit(1); }
+      if(i >= isize(by_dist)) { printf("too fast %d\n", i); exit(1); }
       for(int a=0; a<S7; a++) if(by_dist[i]->move(a)->alt == NULL) by_dist.push_back(by_dist[i]->move(a));
       currentmap->generateAlts(by_dist[i], 0, false);
       }
@@ -394,6 +490,7 @@ struct hrmap_quotient : hrmap_standard {
       allh[i]->emeraldval = allh[i]->alt->emeraldval;
       allh[i]->zebraval = allh[i]->alt->zebraval;
       allh[i]->fiftyval = allh[i]->alt->fiftyval;
+      allh[i]->i1414val = allh[i]->alt->i1414val;
       allh[i]->distance = allh[i]->alt->distance;
       /* for(int j=0; j<7; j++)
         allh[i]->move[j]->alt = createStep(allh[i]->alt, j); */

@@ -1989,6 +1989,9 @@ EX void movemonsters() {
 
   DEBB(DF_TURN, ("normal"));
   moveNormals(moYeti);
+  
+  DEBB(DF_TURN, ("flatbeast"));
+  if(havewhat & HF_FLATBEAST) groupmove(moFlat, 0);
 
   DEBB(DF_TURN, ("slow"));
   if(havewhat & HF_SLOW) moveNormals(moTortoise);

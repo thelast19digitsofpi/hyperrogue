@@ -174,6 +174,7 @@ EX heptagon* hyperbolic_origin() {
   h.emeraldval = a46 ? 0 : 98;
   h.zebraval = 40;
   h.fiftyval = 0;
+  h.i1414val = 0;
   h.fieldval = 0;
   h.rval0 = h.rval1 = 0;
   h.cdata = NULL;

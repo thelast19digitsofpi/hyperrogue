@@ -2680,6 +2680,84 @@ EX void giantLandSwitch(cell *c, int d, cell *from) {
         }
       break;
     
+    
+    /*
+    old 16 -> 15..21
+    old 17 -> 22..28
+    old 18 -> 36..42 and 43..49
+    old 19 -> 29..35
+    */
+    case laRooms:
+      if (d == 8) {
+        int i = i1414val(c);
+        int t = i/4;
+        // expose any holes in my generation algorithm
+        if(i==255) {
+          c->wall = waShallow;
+          c->item = itBuggy2;
+          }
+        else if(i%4 == 2 && (t>=15 && t<=21)) { // ring around the central hept of the 2
+          /* thelast19digitsofpi here:
+          In the 2-rooms, we generate a ring of 7 monsters with some small variations.
+          Then depending on treasure count there is the chance of spawning extra Flat Beasts around (at 10 treasures there is on average 1 per room).
+          */
+          
+          c->wall = waNone;
+          if(hrand(25 + items[itRoomsTreasure]) < PT(10, 15)) {
+            c->item = itRoomsTreasure;
+            c->landparam = turncount;
+            }
+          eMonster ring[7] = {moHedge, moPalace, moFlat, moMetalBeast, moFlailer, moFlat, moNone};
+          // add a little variety
+          ring[6] = pick(moHedge, moFlailer);
+          // switch 2
+          int sw1 = hrand(7);
+          int sw2 = hrand(7);
+          swap(ring[sw1], ring[sw2]);
+          // after 10 treasures add an extra Flat
+          if(items[itRoomsTreasure] > 10) {
+            ring[hrand(7)] = moFlat;
+            }
+          c->monst = ring[t-15];
+          if(c->monst == moPalace || c->monst == moMetalBeast) c->hitpoints = min(2 + items[itRoomsTreasure]/10, 7);
+          }
+        else if(i%2==0) {
+          if(t==0) {
+            // the center of an empty room is always a trap door
+            c->wall = (i == 0 ? waTrapdoor : waRubble);
+            }
+          else if(t>=8 && t<=14) c->wall = waOpenPlate;
+          else if(t>=15 && t<=21) c->wall = waNone;
+          else if(t>=22 && t<=28) {
+            c->wall = waNone;
+            if(hrand(60 + items[itRoomsTreasure]) > 60) c->monst = moFlat;
+            }
+          // automatic doors start to have gaps with more treasure
+          else if(t>=29 && t<=35) c->wall = (hrand(50 + items[itRoomsTreasure]) < 60) ? waAutoDoor : waRubble;
+          else if(t>=36 && t<=49) c->wall = waRubble;
+          // other trap doors get less common with more treasure
+          else c->wall = (hrand(60 + items[itRoomsTreasure]) < 25) ? waTrapdoor : waRubble;
+          }
+        else if(i%2==1) {
+          // mostly walls of various kinds
+          if(t>=29 && t<=35) c->wall = waClosedGate;
+          else if(t==0) c->wall = waChasm;
+          else if(t<=8) c->wall = waBarrier; // no flash allowed
+          else if(t>=15 && t<=21) c->wall = waBarrier;
+          else if(t>=22 && t<=28) c->wall = waStone;
+          else if(t<=14) c->wall = waAutoDoor;
+          else c->wall = waRubble;
+          }
+        
+        // other monsters generate infrequently
+        if (hrand(3000) < 15 + (items[itRoomsTreasure] + yendor::hardness()) && c->wall == waNone) {
+          c->monst = pick(moHedge, moHedge, moFlailer, moFlailer, moPalace, moFlat);
+          if (c->monst == moPalace || c->monst == moVizier) c->hitpoints = min(2 + items[itRoomsTreasure]/10, 7);
+          }
+        }
+      break;
+    
+    
     case landtypes: break;
     }
   }

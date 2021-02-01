@@ -767,6 +767,7 @@ bool pcmove::after_escape() {
   attackable = 
     c2->wall == waBigTree ||
     c2->wall == waSmallTree ||
+    c2->wall == waAutoDoor ||
     (c2->wall == waShrub && items[itOrbSlaying]) ||
     c2->wall == waMirrorWall;
   if(attackable && markOrb(itOrbAether) && c2->wall != waMirrorWall)
@@ -807,6 +808,26 @@ bool pcmove::after_escape() {
       c2->wall = waSmallTree;
       return swing();
       }
+    else if(c2->wall == waAutoDoor) {
+      addMessage(XLAT("You open the door."));
+      playSound(c2, "opengate");
+      changes.ccell(c2);
+      c2->wall = waNone;
+      // remove any automatic doors in radius 2
+      forCellEx(c3, c2) {
+        if(c3->wall == waAutoDoor) {
+          changes.ccell(c3);
+          c3->wall = waNone;
+          forCellEx(c4, c3) {
+            if(c4->wall == waAutoDoor) {
+              changes.ccell(c4);
+              c4->wall = waNone;
+              }
+            }
+          }
+        }
+      return swing();
+      }
     if(!peace::on) {
       if(c2->wall == waMirrorWall)
         addMessage(XLAT("You swing your sword at the mirror."));
@@ -824,7 +845,7 @@ bool pcmove::after_escape() {
     #endif
     return false;
     }
-  else if(c2->monst && (!isFriendly(c2) || c2->monst == moTameBomberbird || isMountable(c2->monst))
+  else if(c2->monst && c2->monst != moFlat && (!isFriendly(c2) || c2->monst == moTameBomberbird || isMountable(c2->monst))
     && !(peace::on && !isMultitile(c2->monst) && !good_tortoise)) 
     return attack();
   else if(!passable(c2, cwt.at, P_USEBOAT | P_ISPLAYER | P_MIRROR | P_MONSTER)) {
@@ -899,7 +920,9 @@ bool pcmove::attack() {
   if(items[itOrbSpeed]&1) attackflags |= AF_FAST;
   if(items[itOrbSlaying]) attackflags |= AF_CRUSH;
   
-  bool ca =canAttack(cwt.at, moPlayer, c2, c2->monst, attackflags);
+  eMonster m = c2->monst;
+  
+  bool ca =canAttack(cwt.at, moPlayer, c2, m, attackflags);
   
   if(!ca) {
     if(forcedmovetype == fmAttack) {
@@ -908,7 +931,7 @@ bool pcmove::attack() {
         return false;
         }
       nextmovetype = lmSkip;
-      addMessage(XLAT("You swing your sword at %the1.", c2->monst));
+      addMessage(XLAT("You swing your sword at %the1.", m));
       return swing();
       }
     if(vmsg()) tell_why_cannot_attack();
@@ -917,10 +940,9 @@ bool pcmove::attack() {
     
   // mip.t=c2 means that the monster is not destroyed and thus
   // still counts for lightning in monstersnear
-
   mip = movei(c2, nullptr, NO_SPACE);
   
-  if(isStunnable(c2->monst) && c2->hitpoints > 1) {
+  if(isStunnable(m) && c2->hitpoints > 1) {
     if(monsterPushable(c2))
       mip = determinePush(cwt, subdir, [c2] (cell *c) { return passable(c, c2, P_BLOW); });
     else
@@ -929,10 +951,10 @@ bool pcmove::attack() {
     changes.push_push(mip.t);
     }
   
-  if(!(isWatery(cwt.at) && c2->monst == moWaterElemental) && checkNeedMove(checkonly, true))
+  if(!(isWatery(cwt.at) && m == moWaterElemental) && checkNeedMove(checkonly, true))
     return false;
   
-  if(c2->monst == moTameBomberbird && warningprotection_hit(moTameBomberbird)) return false;
+  if(m == moTameBomberbird && warningprotection_hit(moTameBomberbird)) return false;
   
   nextmovetype = lmAttack;
 
@@ -955,7 +977,6 @@ bool pcmove::attack() {
       });
     }
   else {
-    eMonster m = c2->monst;
     if(m) {
       if((attackflags & AF_CRUSH) && !canAttack(cwt.at, moPlayer, c2, c2->monst, attackflags ^ AF_CRUSH ^ AF_MUSTKILL))
         markOrb(itOrbSlaying);
@@ -984,12 +1005,13 @@ bool pcmove::attack() {
   sideAttack(cwt.at, d, moPlayer, tkills() - tk - plague_kills);
   lastmovetype = lmAttack; lastmove = c2;
   swordAttackStatic();
-
+  
   if(monstersnear_add_pmi(movei(cwt.at, STAY))) {
     if(vmsg()) wouldkill("You would be killed by %the1!");
     return false;
     }
   if(checkonly) return true;
+  
   if(changes.on) changes.commit();
 
   return after_move();
@@ -1187,6 +1209,7 @@ EX bool warningprotection(const string& s) {
   }
 
 EX bool warningprotection_hit(eMonster m) {
+  if (m == moFlat) return false;
   if(m && warningprotection(XLAT("Are you sure you want to hit %the1?", m)))
     return true;
   return false;

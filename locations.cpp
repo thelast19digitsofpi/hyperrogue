@@ -323,6 +323,8 @@ struct heptagon {
   short zebraval;
   /** \brief Field quotient pattern ID. May have different meaning in other geometries. */
   int fieldval : 24;
+  /** \brief Irregular 14-14 pattern ID. Has no meaning in other geometries. */
+  unsigned int i1414val : 8;
   /** \brief the number of adjacent heptagons */
   unsigned char type : 8;
   /** \brief data for fractal landscapes */

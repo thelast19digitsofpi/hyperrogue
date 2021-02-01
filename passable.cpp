@@ -129,6 +129,7 @@ EX bool anti_alchemy(cell *w, cell *from) {
 #define P_VOID       Flag(32) // void beast
 #define P_PHASE      Flag(33) // phasing movement
 #define P_PULLMAGNET Flag(34) // pull the other part of the magnet
+#define P_FLATBEAST  Flag(35) // Flat Beast's own moves (can't go in gravity or climb rock)
 #endif
 
 EX bool passable(cell *w, cell *from, flagtype flags) {
@@ -187,6 +188,7 @@ EX bool passable(cell *w, cell *from, flagtype flags) {
   if(from && thruVine(from, w) && !F(P_AETHER)) return false;
 
   if(w->monst == moMouse && F(P_JUMP1)) ;
+  else if(w->monst == moFlat && F(P_ISFRIEND)) ;
   else if(w->monst && isFriendly(w) && F(P_FRIENDSWAP)) ;
   else if(w->monst && !F(P_MONSTER)) return false;
 
@@ -274,6 +276,11 @@ EX bool passable(cell *w, cell *from, flagtype flags) {
       }
     else if(!F(P_AETHER)) return false;
     }
+  
+  if(F(P_FLATBEAST)) {
+    if(among(w->wall, waRubble, waDeadfloor2, waRed1, waRed2, waRed3) || isGravityLand(w)) return false;
+    }
+  
   return true;
   }
 
@@ -460,7 +467,7 @@ EX bool isNeighbor1(cell *f, cell *w) {
 
 EX bool passable_for(eMonster m, cell *w, cell *from, flagtype extra) {
   cell *dummy;
-  if(w->monst && !(extra & P_MONSTER) && !isPlayerOn(w)) 
+  if(w->monst && !(extra & P_MONSTER) && !isPlayerOn(w) && !(isPlayerOn(from) && w->monst == moFlat)) 
     return false;
   if(m == moWolf) {
     return (isIcyLand(w) || w->land == laVolcano) && (isPlayerOn(w) || passable(w, from, extra));
@@ -553,6 +560,11 @@ EX bool passable_for(eMonster m, cell *w, cell *from, flagtype extra) {
       if(isPlayerOn(w)) return true;
       }
     return notNearItem(w) && passable(w, from, extra);
+    }
+  if(m == moFlat) {
+    // flat beasts cannot climb stuff
+    // note: probably have to flesh this out so they can't e.g. climb Ivory Tower
+    return (w && from && w->wall != waDeadfloor2 && w->wall != waRed1 && w->wall != waRubble && !isGravityLand(w)) && passable(w, from, extra | P_FLATBEAST);
     }
   return false;
   }

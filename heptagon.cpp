@@ -96,10 +96,14 @@ heptagon *buildHeptagon(heptagon *parent, int d, hstate s, int pard = 0, int fix
     #endif
     if(a38) 
       h->fiftyval = fifty_38(parent->fiftyval, d);  
-    else if(parent->s == hsOrigin)
+    else if(parent->s == hsOrigin) {
       h->fiftyval = firstfiftyval(d);
-    else
+      h->i1414val = firsti1414val(d);
+      }
+    else{
       h->fiftyval = nextfiftyval(parent->fiftyval, parent->move(0)->fiftyval, d);
+      h->i1414val = nexti1414val(parent->i1414val, parent->move(0)->i1414val, d);
+      }
     }
   else {
     h->c7 = NULL;

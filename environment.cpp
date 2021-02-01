@@ -43,6 +43,7 @@ namespace hr {
 #define HF_MONK       Flag(30)
 #define HF_WESTWALL   Flag(31)
 #define HF_JUMP       Flag(32)
+#define HF_FLATBEAST  Flag(33)
 #endif
 
 EX flagtype havewhat, hadwhat;
@@ -487,6 +488,7 @@ EX void bfs() {
           else if(c2->monst == moHexDemon) havewhat |= HF_HEXD;
           else if(c2->monst == moMonk) havewhat |= HF_MONK;
           else if(c2->monst == moShark || c2->monst == moCShark || among(c2->monst, moRusalka, moPike)) havewhat |= HF_SHARK;
+          else if(c2->monst == moFlat) havewhat |= HF_FLATBEAST;
           else if(c2->monst == moAirElemental) 
             havewhat |= HF_AIR, airmap.push_back(make_pair(c2,0));
           }

@@ -1480,6 +1480,17 @@ EX bool drawMonsterType(eMonster m, cell *where, const shiftmatrix& V1, color_t 
       return false;
       }
     
+    case moFlat: {
+      ShadowV(V, cgi.shReptileBody);
+      animallegs(VALEGS, moReptile, darkena(0x00D000, 1, 0xFF), footphase);
+      queuepoly(VABODY, cgi.shReptileBody, darkena(0x00C000, 1, 0xFF));
+      queuepoly(VAHEAD, cgi.shReptileHead, darkena(0x00D000, 1, 0xFF));
+      queuepoly(VAHEAD, cgi.shReptileEye, darkena(0x00D000, 0, 0xFF));
+      queuepoly(VAHEAD * Mirror, cgi.shReptileEye, darkena(0x00D000, 0, 0xFF));
+      //queuepoly(VABODY, cgi.shReptileTail, darkena(0x00D080, 0, 0xFF));
+      return false;
+      }
+    
     case moFrog: case moPhaser: case moVaulter: {
       ShadowV(V, cgi.shFrogBody);
       const shiftmatrix VL = GDIM == 3 ? V : mmscale(V, cgi.ALEG0);
@@ -3308,6 +3319,8 @@ EX void init_floorcolors() {
   floorcolors[laOvergrown] = 0x00C020;
   floorcolors[laClearing] = 0x60E080;
   floorcolors[laHaunted] = 0x609F60;
+  
+  floorcolors[laRooms] = 0x004400;
 
   floorcolors[laMirror] = floorcolors[laMirrorWall] = floorcolors[laMirrorOld] = 0x808080;
   }

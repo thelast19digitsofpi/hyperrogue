@@ -714,7 +714,7 @@ EX vector<eLand> randlands = {
 
 #if HDR
 enum eGeometry {
-  gNormal, gEuclid, gSphere, gElliptic, gZebraQuotient, gFieldQuotient, gTorus, gOctagon, g45, g46, g47, gSmallSphere, gTinySphere, gEuclidSquare, gSmallElliptic, 
+  gNormal, gEuclid, gSphere, gElliptic, gZebraQuotient, gRoomsQuotient, gFieldQuotient, gTorus, gOctagon, g45, g46, g47, gSmallSphere, gTinySphere, gEuclidSquare, gSmallElliptic, 
   gKleinQuartic, gBolza, gBolza2, gMinimal, gBinaryTiling, gArchimedean, 
   gMacbeath, gBring, gSchmutzM2, gSchmutzM3, gCrystal, gOctahedron, 
   gBinary3, gCubeTiling, gCell120, gECell120, gRhombic3, gBitrunc3, 
@@ -803,6 +803,9 @@ static const flagtype qAFFINE          = Flag(24);
 
 static const flagtype qULTRA           = Flag(25);
 
+// thelast19digitsofpi: Not sure if it would disrupt anything to move the other flags so I do this here
+static const flagtype qROOMS           = Flag(26);
+
 // note: dnext assumes that x&7 equals 7
 static const int SEE_ALL = 50;
 static const int OINF = 100;
@@ -816,6 +819,7 @@ static const flagtype qsNONORE          = qsNONOR | qELLIPTIC;
 static const flagtype qsBQ              = qANYQ | qSMALL | qBOUNDED;
 static const flagtype qsSMALL           = qANYQ | qSMALL | qBOUNDED;
 static const flagtype qsSMALLN          = qANYQ | qSMALL | qBOUNDED | qNONORIENTABLE;
+static const flagtype qsROOMS           = qANYQ | qSMALL | qBOUNDED | qROOMS;
 static const flagtype qsZEBRA           = qANYQ | qSMALL | qBOUNDED | qZEBRA;
 static const flagtype qsFIELD           = qANYQ | qFIELD | qBOUNDED;
 static const flagtype qsDOCKS           = qANYQ | qSMALL | qBOUNDED | qDOCKS;
@@ -848,6 +852,7 @@ EX vector<geometryinfo> ginf = {
   {"{5,3}", "none",     "{5,3} (dodecahedron)",                       "sphere",   5, 3, qsSMALLB,  giSphere2, {{SEE_ALL, SEE_ALL}}, eVariation::bitruncated},
   {"{5,3}", "elliptic", "elliptic geometry in {5,3}",                 "elliptic", 5, 3, qsNONORE,  giSphere2, {{SEE_ALL, SEE_ALL}}, eVariation::bitruncated},
   {"{7,3}", "Zebra",    "Zebra quotient",                             "Zebra",    7, 3, qsZEBRA,   giHyperb2, {{7, 5}}, eVariation::bitruncated},
+  {"{7,3}", "Rooms",    "Lost Rooms quotient",                        "Rooms",    7, 3, qsROOMS,   giHyperb2, {{7, 5}}, eVariation::bitruncated},
   {"{7,3}", "field",    "field quotient",                             "field",    7, 3, qsFIELD,   giHyperb2, {{7, 5}}, eVariation::bitruncated},
   {"{6,3}", "torus",    "torus/Klein bottle/...",                     "torus",    6, 3, qsBQ|qDEPRECATED,      giEuclid2, {{7, 7}}, eVariation::bitruncated},
   {"{8,3}", "none",     "{8,3} (like standard but with octagons)",    "oct",      8, 3, 0,         giHyperb2, {{6, 4}}, eVariation::bitruncated},

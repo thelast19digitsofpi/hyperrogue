@@ -378,6 +378,7 @@ EX eLand getNewLand(eLand old) {
     laBull, laTerracotta, laRose, laGraveyard, laHive, laDragon, laTrollheim,
     laWet, laFrog, laEclectic,
     laCrossroads5,
+    laRooms,
     })
     if(landUnlocked(l)) tab[cnt++] = l;    
 
@@ -402,6 +403,9 @@ EX eLand getNewLand(eLand old) {
     {laEclectic, laStorms, 3, 3}, {laEclectic, laIce, 3, 3}, {laEclectic, laPalace, 3, 3}, {laEclectic, laDeadCaves, 3, 3},
     
     {laEFire, laDragon, 5, 5}, {laEWater, laLivefjord, 5, 5}, {laEEarth, laDeadCaves, 5, 5}, {laEAir, laWhirlwind, 5, 5},
+    
+    // so I can see it more often
+    {laIce, laRooms, 30, 30},
     }) {
     if(old == c.l1 && landUnlocked(c.l2)) for(int i=0; i<c.f1; i++) tab[cnt++] = c.l2;
     if(old == c.l2 && landUnlocked(c.l1)) for(int i=0; i<c.f2; i++) tab[cnt++] = c.l1;
@@ -496,6 +500,7 @@ EX vector<eLand> land_over = {
   laElementalWall, laTrollheim,
   laHell, laCrossroads3, laCocytus, laPower, laCrossroads4,
   laCrossroads5,
+  laRooms,
   // EXTRA
   laWildWest, laHalloween, laDual, laSnakeNest, laMagnetic, laCA, laAsteroids
   };

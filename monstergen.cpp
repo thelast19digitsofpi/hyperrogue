@@ -746,6 +746,10 @@ EX void wandering() {
       c->monst = eMonster(moWitch + hrand(NUMWITCH));
       }
     
+    else if(c->land == laRooms && wchance(items[itRoomsTreasure], 60) && canReachPlayer(c, moFlat)) {
+      c->monst = moFlat;
+      }
+    
     else if(c->land == laCamelot && hrand(30) == 0 && (euclid || c->master->alt) && celldistAltRelative(c) < 0)
       c->monst = camelot_monster();
     
