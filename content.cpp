@@ -1544,37 +1544,6 @@ LAND( 0x30FF30, "Irradiated Field", laVariant, ZERO, itVarTreasure, RESERVED,
   #undef LST
 
 // add new content here
-  
-  LAND(0x555555, "Lost Rooms", laRooms, ZERO, itRoomsTreasure, RESERVED,
-    "It is unclear what the purpose of these rooms was... research? prisons? "
-    "Whatever it was, it is now a respite for criminals. It would be helpful to gather some evidence of their evil works..."
-    )
-  ITEM(';', 0xaaaaaa, "Incriminating Evidence", itRoomsTreasure, IC_TREASURE, ZERO, RESERVED, osNone, "The more of these you find, the stronger your case can be against the criminals who inhabit the Lost Rooms.")
-  MONSTER('J', 0xff0000, "Flat Beast", moFlat, ZERO, RESERVED, moNone,
-    "A flat monster. You can defeat it by jumping on it. They cannot move on to rubble.\n\n"
-    "When you attack a Flat Beast, you move into its space, instead of standing still."
-    )
-  WALL( '#', 0x306030, "Automatic Door", waAutoDoor, WF_WALL | WF_HIGHWALL, RESERVED, 0, sgNone, "This door automatically opens when you move into it, opening the entire passageway.")
-  NATIVE(m == moFlat ? 2 : among(m, moFlailer, moHedge, moMetalBeast, moPalace) ? 1 : 0)
-  REQ( ALWAYS )
-
-/*
-LAND(0x88ddee, "Cloud City", laClouds, ZERO, it, RESERVED,
-    "A city built in the sky? Seems too good to be true... and probably is, because this one has been unmaintained for years. The current inhabitants seem not to care about its possible collapse... "
-    )
-ITEM('*', 0x009000, "" )
-ITEM('o', 0x77ccdd, "Orb of Levitation", itOrbLevitate, IC_ORB, IF_EMPATHY, RESERVED, osUtility,
-  "This Orb allows you to levitate, so you can cross chasms and water, and move horizontally in gravity lands.\n\n"
-  "It lasts longer than Orb of Aether, but it costs 2 charges per turn to float."
-  )
-MONSTER('V', 0xc03030, "Angry Villager", moVillager, CF_FACE_UP, )
-WALL('+', 0xbbbbbb, "strong cloud", waStrongCloud, ZERO, RESERVED, 0, sgNone,
-  "This cloud is quite stable. It will remain active forever.")
-WALL('+', 0xdddddd, "cloud", waMediumCloud, ZERO, RESERVED, 0, sgNone,
-  "This cloud is stable for now, but is susceptible to being weakened.")
-WALL('+', 0xf6f6f6, "weak cloud", waWeakCloud, ZERO, RESERVED, 0, sgNone,
-  "This cloud is weak. It can hold your weight, but any more stress than that and it may fall.")
-*/
 
 LAND( 0x202020, "Space Rocks", laAsteroids, ZERO, itAsteroid, RESERVED, rock_description)
 ITEM( '!', 0xFFD0D0, "Fuel", itAsteroid, IC_TREASURE, ZERO, RESERVED, osNone, rock_description)
@@ -1663,6 +1632,47 @@ ITEM( 'o', 0x808080, "Orb of Chaos", itOrbChaos, IC_ORB, ZERO, RESERVED, osUtili
   #define LST {itDiamond, itFulgurite, itPalace, itSilver}
   REQ(ITEMS_TOTAL(LST, variant_unlock_value()*4/3))
   #undef LST
+
+
+
+  
+  LAND(0x555555, "Lost Rooms", laRooms, ZERO, itRoomsTreasure, RESERVED,
+    "It is unclear what the purpose of these rooms was... research? prisons? "
+    "Whatever it was, it is now a respite for criminals. It would be helpful to gather some evidence of their evil works..."
+    )
+  ITEM(';', 0xaaaaaa, "Incriminating Evidence", itRoomsTreasure, IC_TREASURE, ZERO, RESERVED, osNone, "The more of these you find, the stronger your case can be against the criminals who inhabit the Lost Rooms.")
+  MONSTER('J', 0xff0000, "Flat Beast", moFlat, ZERO, RESERVED, moFlat,
+    "A flat monster. You can defeat it by jumping on it. They cannot move on to rubble.\n\n"
+    "When you attack a Flat Beast, you move into its space, instead of standing still."
+    )
+  WALL( '#', 0x306030, "Automatic Door", waAutoDoor, WF_WALL | WF_HIGHWALL, RESERVED, 0, sgNone, "This door automatically opens when you move into it, opening the entire passageway.")
+  NATIVE(m == moFlat ? 2 : among(m, moFlailer, moHedge, moMetalBeast, moPalace) ? 1 : 0)
+  REQ( ALWAYS )
+
+
+LAND(0x88ddee, "Cloud City", laClouds, ZERO, itCloudsTreasure, RESERVED,
+    "A city built in the sky? Seems too good to be true... and probably is, because this one has been unmaintained for years. The current inhabitants seem not to care about its possible collapse... "
+    )
+ITEM('*', 0x009000, "itCloudsTreasure", itCloudsTreasure, IC_TREASURE, ZERO, RESERVED, osNone, "The treasure for the Cloud City land." )
+ITEM('o', 0x77ccdd, "Orb of Levitation", itOrbLevitate, IC_ORB, IF_EMPATHY, RESERVED, osUtility,
+  "This Orb allows you to levitate, so you can cross chasms and water, and move horizontally in gravity lands.\n\n"
+  "It lasts longer than Orb of Aether, but it costs 2 charges per turn to float."
+  )
+MONSTER('V', 0xc03030, "Angry Villager", moVillager, CF_FACE_UP, RESERVED, moYeti,
+  "This person is angry about the destruction of the city... but has decided to blame it on Rogues instead of the real culprits."
+  )
+MONSTER('D', 0x600000, "Flying Drone", moDrone, CF_BIRD | CF_FLYING | CF_IGNORE_PLATE | CF_NONLIVING | CF_FACE_SIDE, RESERVED, moEagle,
+  "A rather heavy flying drone. When destroyed, it falls and weakens the cloud below.")
+WALL('+', 0xeeeeee, "strong cloud", waStrongCloud, ZERO, RESERVED, 0, sgNone,
+  "This cloud is quite stable.")
+WALL('+', 0xcccccc, "cloud", waMediumCloud, ZERO, RESERVED, 0, sgNone,
+  "This cloud is stable for now, but is susceptible to being weakened.")
+WALL('+', 0xaaaaaa, "weak cloud", waWeakCloud, ZERO, RESERVED, 0, sgNone,
+  "This cloud is weak. It can hold your weight, but if it faces serious stress it will collapse.")
+  NATIVE((m == moVillager || m == moDrone) ? 2 : (m == moCrusher) ? 1 : 0)
+  REQ(ALWAYS)
+
+
 
 //shmupspecials
 MONSTER( '@', 0xC0C0C0, "Rogue", moPlayer, CF_FACE_UP | CF_PLAYER, RESERVED, moNone, "In the Shoot'em Up mode, you are armed with thrown Knives.")

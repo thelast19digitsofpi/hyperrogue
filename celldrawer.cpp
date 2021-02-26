@@ -147,6 +147,7 @@ void celldrawer::setcolors() {
     case laMotion: case laGraveyard: case laWineyard: case laLivefjord: 
     case laRlyeh: case laHell: case laCrossroads: case laJungle:
     case laAlchemist: case laFrog:
+    case laRooms:
       fcol = floorcolors[c->land]; break;
     
     case laCA:
@@ -1089,6 +1090,7 @@ void celldrawer::set_land_floor(const shiftmatrix& Vf) {
       break;
     
     case laRose:
+    case laClouds:
       set_floor(cgi.shRoseFloor);
       break;
     
@@ -1177,6 +1179,7 @@ void celldrawer::set_land_floor(const shiftmatrix& Vf) {
       break;
     
     case laPalace: case laTerracotta:
+    case laRooms:
       set_floor(cgi.shPalaceFloor);
       break;
     

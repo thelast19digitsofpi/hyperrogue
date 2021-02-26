@@ -108,6 +108,7 @@ EX void moveMonster(const movei& mi) {
   auto& cf = mi.s;
   auto& ct = mi.t;
   eMonster m = cf->monst;
+  if(m == moFlat) printf("\t\e[35;1m[moveMonster] Moving Flat Beast\e[0m\n");
   changes.ccell(cf);
   changes.ccell(ct);
   bool fri = isFriendly(cf);
@@ -1061,7 +1062,7 @@ EX void groupmove2(const movei& mi, eMonster movtype, flagtype mf) {
   if(c->pathdist == 0) return;
 
   if(movtype == moKrakenH && isTargetOrAdjacent(from)) ;
-/*  else if(passable_for(movtype, from, c, P_ONPLAYER | P_CHAIN | P_MONSTER)) ;
+ /* else if(passable_for(movtype, from, c, P_ONPLAYER | P_CHAIN | P_MONSTER)) ;
   else if(canAttack(c, movtype, from, from->monst, AF_GETPLAYER)) ; */
   else if(from->wall == waThumperOn) ;
   else if(passable_for(movtype, from, c, P_CHAIN | P_MONSTER)) ;
@@ -1123,6 +1124,7 @@ EX void groupmove2(const movei& mi, eMonster movtype, flagtype mf) {
     if((mf & MF_NOFRIEND) && isFriendly(c)) return;
     if((mf & MF_MOUNT) && !isMounted(c)) return;
     if(isRatling(c->monst) && lastmovetype == lmSkip) return;
+    //if(movtype == moFlat) return; // for some reason Flat Beasts move unnecessarily when like this
 
     if(c->stuntime) return;
     if(c->monst == moBat && batsAfraid(from)) return;
@@ -1143,7 +1145,6 @@ EX void groupmove2(const movei& mi, eMonster movtype, flagtype mf) {
       dragon::move(mi);
       return;
       }
-    
     moveMonster(mi);
     onpath(from, 0);
     }
@@ -1172,7 +1173,7 @@ EX void groupmove(eMonster movtype, flagtype mf) {
   else {
     if(!peace::on) for(int i=0; i<isize(targets); i++) gendfs.push_back(targets[i]);
   
-    if(invisfish && (movtype == moSlime || movtype == moShark || movtype == moKrakenH)) for(int i=0; i<numplayers(); i++) {
+    if(invisfish && (movtype == moSlime || movtype == moShark || movtype == moKrakenH || movtype == moFlat)) for(int i=0; i<numplayers(); i++) {
       cell *c = playerpos(i);
       if(!c) continue;
       gendfs.push_back(c);
@@ -1207,6 +1208,8 @@ EX void groupmove(eMonster movtype, flagtype mf) {
     cell *c = dcal[i];
     if((mf & MF_ONLYEAGLE) && c->monst != moEagle && c->monst != moBat) return;
     if(movegroup(c->monst) == movtype && c->pathdist != 0) {
+      if(c->monst == moFlat) return; //printf("calling moveNormal from groupmove directly\n");
+      if(c->monst == moSlime) printf("calling moveNormal with slime beat directly from groupmove\n");
       cell *c2 = moveNormal(c, mf);
       if(c2) onpath(c2, 0);
       }
@@ -1986,12 +1989,15 @@ EX void movemonsters() {
     
   DEBB(DF_TURN, ("butterflies"));
   moveButterflies();
+  
+  DEBB(DF_TURN, ("flatbeast"));
+  if(havewhat & HF_FLATBEAST) {
+    groupmove(moFlat, 0);
+    }
 
   DEBB(DF_TURN, ("normal"));
   moveNormals(moYeti);
   
-  DEBB(DF_TURN, ("flatbeast"));
-  if(havewhat & HF_FLATBEAST) groupmove(moFlat, 0);
 
   DEBB(DF_TURN, ("slow"));
   if(havewhat & HF_SLOW) moveNormals(moTortoise);

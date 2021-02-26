@@ -1,10 +1,11 @@
 # HyperRogue modifications by thelast19digitsofpi
 Things already made:
 * New pattern and quotient (currently called the Lost Rooms pattern). For some reason, the two don't seem to work well.
-* New land (Lost Rooms) that uses the pattern; I'm working on a second one.
-	* Note: currently the Lost Rooms is set to have extremely high spawn chance near Icy Land, to make it easier to test.
+* 2 new Lands (Lost Rooms and Cloud City) that use the pattern.
+	* Note: currently these lands are set to have extremely high spawn chance near Icy Land, to make it easier to test.
 * New monster (Flat Beast) that is killed by actually moving into it (like chess captures).
 	* I don't think this monster properly works with Orb of Discord or allies.
+* New monster (Flying Drone) that I still don't have graphics for. I also made an "Angry Villager".
 
 It is not finished yet (for example, I want to investigate why my pattern and quotient, which should be the same thing, are not compatible).
 

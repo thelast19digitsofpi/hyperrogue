@@ -104,6 +104,9 @@ EX namespace brownian {
     else if(among(c->wall, waNone, waDock, waBurningDock, waFloorA, waFloorB, waCavefloor, waDeadfloor, waMineMine, waMineUnknown, waMineOpen, waOpenGate, waClosePlate, waOpenPlate, waGargoyleBridge, waReptileBridge))
       c->wall = waSea;
     else if(cellHalfvine(c)) destroyHalfvine(c, waNone, 4);
+    else if(c->land == laClouds) weakenCloud(c);
+    
+    if(c->land == laClouds && c->wall == waNone) c->wall = waChasm;
     }
   
   EX void init(cell *c) {

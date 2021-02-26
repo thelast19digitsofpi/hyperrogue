@@ -750,6 +750,11 @@ EX void wandering() {
       c->monst = moFlat;
       }
     
+    else if(c->land == laClouds && wchance(items[itCloudsTreasure], 300)) {
+      if(canReachPlayer(c, moVillager)) c->monst = moVillager;
+      else if(hrand(100) < 10) c->monst = moAcidBird; // should be ultra-rare
+      }
+    
     else if(c->land == laCamelot && hrand(30) == 0 && (euclid || c->master->alt) && celldistAltRelative(c) < 0)
       c->monst = camelot_monster();
     

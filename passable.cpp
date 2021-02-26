@@ -74,6 +74,7 @@ EX bool checkflags(flagtype flags, flagtype x) {
     if((x & P_FISH)      && markOrb(itOrbFish)) return true;
     if((x & P_MARKWATER) && markOrb(itOrbWater)) return true;
     if((x & P_AETHER)    && markOrb2(itOrbAether) && !(flags&P_NOAETHER)) return true;
+    if((x & P_LEVITATE)) && markOrb(itOrbLevitate) return true;
     }
   if(flags & P_ISFRIEND) if(items[itOrbEmpathy]) 
     if(checkflags(flags ^ P_ISPLAYER ^ P_ISFRIEND, x) && markOrb(itOrbEmpathy))
@@ -130,6 +131,7 @@ EX bool anti_alchemy(cell *w, cell *from) {
 #define P_PHASE      Flag(33) // phasing movement
 #define P_PULLMAGNET Flag(34) // pull the other part of the magnet
 #define P_FLATBEAST  Flag(35) // Flat Beast's own moves (can't go in gravity or climb rock)
+#define P_LEVITATE   Flag(36) // Orb of Levitation, less powerful than Aether
 #endif
 
 EX bool passable(cell *w, cell *from, flagtype flags) {
@@ -258,11 +260,11 @@ EX bool passable(cell *w, cell *from, flagtype flags) {
     if(in_gravity_zone(w)) ;
     else if(from && from->wall == waBoat && F(P_USEBOAT) && 
       (!againstCurrent(w, from) || F(P_MARKWATER)) && !(from->item == itOrbYendor)) ;
-    else if(!F(P_AETHER | P_FISH | P_FLYING | P_BLOW | P_JUMP1 | P_BULLET | P_DEADLY | P_REPTILE)) return false;
+    else if(!F(P_AETHER | P_FISH | P_FLYING | P_BLOW | P_JUMP1 | P_BULLET | P_DEADLY | P_REPTILE | P_LEVITATE)) return false;
     }
   if(isChasmy(w)) {
     if(in_gravity_zone(w)) ;
-    else if(!F(P_AETHER | P_FLYING | P_BLOW | P_JUMP1 | P_BULLET | P_DEADLY | P_REPTILE)) return false;  
+    else if(!F(P_AETHER | P_FLYING | P_BLOW | P_JUMP1 | P_BULLET | P_DEADLY | P_REPTILE | P_LEVITATE)) return false;  
     }
 
   if(w->wall == waRoundTable && from && from->wall != waRoundTable && (flags & P_ISPLAYER)) return true;

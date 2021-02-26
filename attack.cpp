@@ -58,6 +58,7 @@ int* killtable[] = {
     &kills[moFallingDog], &kills[moVariantWarrior], &kills[moWestHawk],
     &kills[moPike], &kills[moRusalka], &kills[moFrog], &kills[moPhaser], &kills[moVaulter],
     &kills[moFlat],
+    &kills[moDrone], &kills[moVillager],
     NULL
     };
 
@@ -814,6 +815,10 @@ EX void killMonster(cell *c, eMonster who, flagtype deathflags IS(0)) {
       }
     pcount = 0;
     }
+  
+  if(m == moDrone) {
+    weakenCloud(c);
+    }
 
   drawParticles(c, minf[m].color, pcount);
   if(fallanim) {
@@ -887,7 +892,7 @@ EX void fightmessage(eMonster victim, eMonster attacker, bool stun, flagtype fla
     else if(victim == moFlat) {
       playSound(NULL, "hit-crush"+pick123());
       //addMessage(XLAT("You jump on %the1.", victim));
-      addMessage(XLAT("You jump on the Flat Beast.")); // because I don't know how translations work yet
+      addMessage(XLAT("You jump on %the1.", moFlat)); // because I don't know how translations work yet
       }
     else if(!peace::on) {
       playSound(NULL, "hit-sword"+pick123());

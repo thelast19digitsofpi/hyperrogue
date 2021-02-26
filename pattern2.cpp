@@ -306,7 +306,7 @@ EX int i1414val(cell *c) {
     
     //special case for hex between 0,4,28 and similar
     if(a[0] < 4) return (a[2] - a[1] == 24 ? a[2] : a[1]) + 56;
-    if(a[1] < 32) return (a[2] - a[1] == 24 ? a[2] : a[1]) + 84;
+    if(a[1] < 32) return (a[1] - a[0] == 24 ? a[1] : a[0]) + 84;
     if(a[0] < 32) {
       // adjacent to a wall pair
       if ((a[1]^a[2])==2) return a[0] + 112;

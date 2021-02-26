@@ -836,6 +836,7 @@ EX void monstersTurn() {
     moveEffect(movei(c, FALL), moDeadBird);
     destroyBoats(c, NULL, true);
     explodeBarrel(c);
+    weakenCloud(c);
     }
   
   changes.value_keep(crush_now);

@@ -2736,7 +2736,7 @@ EX void giantLandSwitch(cell *c, int d, cell *from) {
           else if(t>=29 && t<=35) c->wall = (hrand(50 + items[itRoomsTreasure]) < 60) ? waAutoDoor : waRubble;
           else if(t>=36 && t<=49) c->wall = waRubble;
           // other trap doors get less common with more treasure
-          else c->wall = (hrand(60 + items[itRoomsTreasure]) < 25) ? waTrapdoor : waRubble;
+          else c->wall = (hrand(60 + items[itRoomsTreasure]) < 25) ? waTrapdoor : hrand(2) ? waRubble : waNone;
           }
         else if(i%2==1) {
           // mostly walls of various kinds
@@ -2757,6 +2757,49 @@ EX void giantLandSwitch(cell *c, int d, cell *from) {
         }
       break;
     
+    case laClouds:
+      if(d==8) {
+        int i = i1414val(c);
+        int t = i/4;
+        int stability = 0;
+        if(i%2==0) {
+          if(t==0) stability = 3;
+          else if(t>=15 && t<=21) {
+            stability = hrand(2) + 2; // 2 or 3
+            }
+          else if(t<=7 || (t>=22 && t<=28)) {
+            stability = hrand(2) + 1; // 1 or 2
+            }
+          else stability = 1;
+          
+          while(stability > 0 && hrand(50 + items[itCloudsTreasure]) > 50) stability--;
+          
+          if(stability>0) {
+            if(hrand(2000) < min(PT(30 + 2*kills[moVillager], 150), 200) && notDippingFor(itCloudsTreasure))
+              c->item = itCloudsTreasure;
+            
+            // ground monsters
+            if(hrand_monster(4000) < 10 + 2 * (items[itCloudsTreasure] + yendor::hardness())) {
+              c->monst = pick(moVillager, moVillager, moVillager, moCrusher, moMetalBeast);
+              if(c->monst == moMetalBeast) c->hitpoints = 3;
+              }
+            
+            }
+          }
+        else if(t>=29 && t<=35) stability = 1;
+        else stability = 0;
+        
+        if(stability>3) stability = 3;
+        if(stability<0) stability = 0;
+        
+        eWall platforms[4] = {waChasm, waWeakCloud, waMediumCloud, waStrongCloud};
+        c->wall = platforms[stability];
+        
+        // drones can spawn anywhere, even over chasms
+        if(hrand_monster(16000) < 10 + items[itCloudsTreasure] + yendor::hardness())
+          c->monst = moDrone;
+        }
+      break;
     
     case landtypes: break;
     }

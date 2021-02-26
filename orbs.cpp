@@ -162,6 +162,8 @@ EX void reduceOrbPowers() {
   reduceOrbPower(itOrbImpact, 120);
   reduceOrbPower(itOrbChaos, 120);
   reduceOrbPower(itOrbPlague, 120);
+  
+  reduceOrbPower(itOrbLevitate, 120);
 
   reduceOrbPower(itOrbSide1, 120);
   reduceOrbPower(itOrbSide2, 120);
@@ -1534,6 +1536,7 @@ EX int orbcharges(eItem it) {
     case itOrbDigging:
     case itOrbTeleport:
     case itOrbMagnetism:
+    case itOrbLevitate:
       return 77;
     case itOrbDomination:
       return 90;

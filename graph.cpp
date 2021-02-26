@@ -1678,12 +1678,13 @@ EX bool drawMonsterType(eMonster m, cell *where, const shiftmatrix& V1, color_t 
       return false;
       }
     
+    case moVillager:
     case moDesertman: {
       const shiftmatrix VBS = VBODY * otherbodyparts(V, darkena(col, 0, 0xC0), m, footphase);
       ShadowV(V, cgi.shPBody);
       queuepoly(VBS, cgi.shPBody, darkena(col, 0, 0xC0));
       if(!peace::on) queuepoly(VBS, cgi.shPSword, 0xFFFF00FF);
-      queuepoly(VHEAD, cgi.shHood, 0xD0D000C0 | UNTRANS);
+      queuepoly(VHEAD, cgi.shHood, (m == moVillager ? 0xD00000C0 : 0xD0D000C0) | UNTRANS);
       humanoid_eyes(V, 0x301800FF);
       return false;
       }
@@ -3584,6 +3585,7 @@ EX int getfd(cell *c) {
     case laRedRock:
     case laReptile:
     case laCanvas: 
+    case laClouds:
       return 0;
       
     case laSnakeNest:
@@ -3900,6 +3902,7 @@ EX int ceiling_category(cell *c) {
     case laDual:
     case laWestWall:
     case laAsteroids:
+    case laClouds:
       return 1;
     
     case laPower:
@@ -3970,6 +3973,7 @@ EX int ceiling_category(cell *c) {
     
     case laTemple:
     case laRlyeh:
+    case laRooms:
       return 7;
     }
   }

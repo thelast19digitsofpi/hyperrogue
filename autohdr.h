@@ -3096,208 +3096,208 @@ namespace hr {
   int wingphase(int period, int phase IS(0));
 #line 1295 "graph.cpp"
   bool drawMonsterType(eMonster m, cell *where, const shiftmatrix& V1, color_t col, double footphase, color_t asciicol);
-#line 2328 "graph.cpp"
+#line 2329 "graph.cpp"
   extern shiftmatrix playerV;
-#line 2330 "graph.cpp"
+#line 2331 "graph.cpp"
   bool applyAnimation(cell *c, shiftmatrix& V, double& footphase, int layer);
-#line 2435 "graph.cpp"
+#line 2436 "graph.cpp"
   int cellcolor(cell *c);
-#line 2480 "graph.cpp"
+#line 2481 "graph.cpp"
   extern bool dont_face_pc;
-#line 2482 "graph.cpp"
+#line 2483 "graph.cpp"
   bool drawMonster(const shiftmatrix& Vparam, int ct, cell *c, color_t col, color_t asciicol);
-#line 2922 "graph.cpp"
+#line 2923 "graph.cpp"
   int haveaura();
-#line 2936 "graph.cpp"
+#line 2937 "graph.cpp"
   void clearaura();
-#line 2956 "graph.cpp"
+#line 2957 "graph.cpp"
   void addauraspecial(shiftpoint h, color_t col, int dir);
-#line 2963 "graph.cpp"
+#line 2964 "graph.cpp"
   void addaura(shiftpoint h, color_t col, int fd);
-#line 2996 "graph.cpp"
+#line 2997 "graph.cpp"
   void drawaura();
-#line 3155 "graph.cpp"
+#line 3156 "graph.cpp"
   extern colortable minecolors;
-#line 3160 "graph.cpp"
+#line 3161 "graph.cpp"
   extern colortable distcolors;
-#line 3176 "graph.cpp"
+#line 3177 "graph.cpp"
   int countMinesAround(cell *c);
-#line 3184 "graph.cpp"
+#line 3185 "graph.cpp"
   transmatrix applyPatterndir(cell *c, const patterns::patterninfo& si);
-#line 3192 "graph.cpp"
+#line 3193 "graph.cpp"
   transmatrix applyDowndir(cell *c, const cellfunction& cf);
-#line 3243 "graph.cpp"
+#line 3244 "graph.cpp"
   int celldistAltPlus(cell *c);
-#line 3249 "graph.cpp"
+#line 3250 "graph.cpp"
   color_t reptilecolor(cell *c);
-#line 3277 "graph.cpp"
+#line 3278 "graph.cpp"
   extern colortable nestcolors;
-#line 3281 "graph.cpp"
+#line 3282 "graph.cpp"
   void init_floorcolors();
-#line 3328 "graph.cpp"
+#line 3329 "graph.cpp"
   color_t magma_color(int id);
-#line 3342 "graph.cpp"
+#line 3343 "graph.cpp"
   bool has_nice_dual();
-#line 3362 "graph.cpp"
+#line 3363 "graph.cpp"
   bool is_nice_dual(cell *c);
-#line 3366 "graph.cpp"
+#line 3367 "graph.cpp"
   bool use_swapped_duals();
   #if CAP_SHAPES
-#line 3371 "graph.cpp"
+#line 3372 "graph.cpp"
   void floorShadow(cell *c, const shiftmatrix& V, color_t col);
-#line 3384 "graph.cpp"
+#line 3385 "graph.cpp"
   bool use_warp_graphics();
-#line 3391 "graph.cpp"
+#line 3392 "graph.cpp"
   void escherSidewall(cell *c, int sidepar, const shiftmatrix& V, color_t col);
-#line 3420 "graph.cpp"
+#line 3421 "graph.cpp"
   bool placeSidewall(cell *c, int i, int sidepar, const shiftmatrix& V, color_t col);
   #endif
-#line 3469 "graph.cpp"
+#line 3470 "graph.cpp"
   extern color_t stdgridcolor;
-#line 3471 "graph.cpp"
+#line 3472 "graph.cpp"
   int gridcolor(cell *c1, cell *c2);
   #if CAP_SHAPES
-#line 3495 "graph.cpp"
+#line 3496 "graph.cpp"
   void pushdown(cell *c, int& q, const shiftmatrix &V, double down, bool rezoom, bool repriority);
   #endif
-#line 3556 "graph.cpp"
+#line 3557 "graph.cpp"
   int shallow(cell *c);
-#line 3577 "graph.cpp"
+#line 3578 "graph.cpp"
   extern bool bright;
-#line 3580 "graph.cpp"
+#line 3581 "graph.cpp"
   int getfd(cell *c);
-#line 3638 "graph.cpp"
-  extern bool just_gmatrix;
 #line 3640 "graph.cpp"
+  extern bool just_gmatrix;
+#line 3642 "graph.cpp"
   int colorhash(color_t i);
-#line 3644 "graph.cpp"
+#line 3646 "graph.cpp"
   bool isWall3(cell *c, color_t& wcol);
-#line 3653 "graph.cpp"
-  bool isWall3(cell *c);
 #line 3655 "graph.cpp"
+  bool isWall3(cell *c);
+#line 3657 "graph.cpp"
   bool isSulphuric(eWall w);
-#line 3663 "graph.cpp"
+#line 3665 "graph.cpp"
   color_t transcolor(cell *c, cell *c2, color_t wcol);
-#line 3696 "graph.cpp"
+#line 3698 "graph.cpp"
   int get_darkval(cell *c, int d);
-#line 3729 "graph.cpp"
+#line 3731 "graph.cpp"
   ld mousedist(shiftmatrix T);
-#line 3740 "graph.cpp"
-  extern int noclipped;
 #line 3742 "graph.cpp"
+  extern int noclipped;
+#line 3744 "graph.cpp"
   extern bool frustum_culling;
-#line 3800 "graph.cpp"
+#line 3802 "graph.cpp"
   extern ld precise_width;
-#line 3804 "graph.cpp"
-  extern bool fat_edges;
 #line 3806 "graph.cpp"
+  extern bool fat_edges;
+#line 3808 "graph.cpp"
   void gridline(const shiftmatrix& V1, const hyperpoint h1, const shiftmatrix& V2, const hyperpoint h2, color_t col, int prec);
-#line 3840 "graph.cpp"
+#line 3842 "graph.cpp"
   void gridline(const shiftmatrix& V, const hyperpoint h1, const hyperpoint h2, color_t col, int prec);
-#line 3844 "graph.cpp"
+#line 3846 "graph.cpp"
   int wall_offset(cell *c);
-#line 3852 "graph.cpp"
+#line 3854 "graph.cpp"
   void queue_transparent_wall(const shiftmatrix& V, hpcshape& sh, color_t color);
   #if MAXMDIM >= 4
-#line 3865 "graph.cpp"
+#line 3867 "graph.cpp"
   int ceiling_category(cell *c);
   #endif
-#line 3979 "graph.cpp"
+#line 3983 "graph.cpp"
   void set_detail_level(const shiftmatrix& V);
-#line 4013 "graph.cpp"
+#line 4017 "graph.cpp"
   void drawBubble(cell *c, color_t col, string s, ld size);
-#line 4021 "graph.cpp"
+#line 4025 "graph.cpp"
   void drawFlash(cell *c);
-#line 4024 "graph.cpp"
-  void drawBigFlash(cell *c);
 #line 4028 "graph.cpp"
+  void drawBigFlash(cell *c);
+#line 4032 "graph.cpp"
   void drawParticleSpeed(cell *c, color_t col, int speed);
-#line 4033 "graph.cpp"
-  void drawParticle(cell *c, color_t col, int maxspeed IS(100));
 #line 4037 "graph.cpp"
+  void drawParticle(cell *c, color_t col, int maxspeed IS(100));
+#line 4041 "graph.cpp"
   void drawDirectionalParticle(cell *c, int dir, color_t col, int maxspeed IS(100));
-#line 4049 "graph.cpp"
-  void drawParticles(cell *c, color_t col, int qty, int maxspeed IS(100));
 #line 4053 "graph.cpp"
+  void drawParticles(cell *c, color_t col, int qty, int maxspeed IS(100));
+#line 4057 "graph.cpp"
   void drawFireParticles(cell *c, int qty, int maxspeed IS(100));
-#line 4058 "graph.cpp"
+#line 4062 "graph.cpp"
   void fallingFloorAnimation(cell *c, eWall w IS(waNone), eMonster m IS(moNone));
-#line 4066 "graph.cpp"
+#line 4070 "graph.cpp"
   void fallingMonsterAnimation(cell *c, eMonster m, int id IS(multi::cpid));
   #if CAP_QUEUE
-#line 4126 "graph.cpp"
+#line 4130 "graph.cpp"
   void queuecircleat1(cell *c, const shiftmatrix& V, double rad, color_t col);
-#line 4166 "graph.cpp"
+#line 4170 "graph.cpp"
   void queuecircleat(cell *c, double rad, color_t col);
   #endif
-#line 4178 "graph.cpp"
+#line 4182 "graph.cpp"
   cell *forwardcell();
-#line 4189 "graph.cpp"
+#line 4193 "graph.cpp"
   extern bool draw_centerover;
-#line 4191 "graph.cpp"
+#line 4195 "graph.cpp"
   bool should_draw_mouse_cursor();
-#line 4198 "graph.cpp"
+#line 4202 "graph.cpp"
   void drawMarkers();
   #if CAP_QUEUE
-#line 4429 "graph.cpp"
+#line 4433 "graph.cpp"
   void draw_flash(struct flashdata& f, const shiftmatrix& V, bool& kill);
   #endif
-#line 4518 "graph.cpp"
+#line 4522 "graph.cpp"
   bool allowIncreasedSight();
-#line 4532 "graph.cpp"
+#line 4536 "graph.cpp"
   bool allowChangeRange();
-#line 4543 "graph.cpp"
-  extern purehookset hooks_drawmap;
-#line 4545 "graph.cpp"
-  extern transmatrix actual_view_transform;
 #line 4547 "graph.cpp"
+  extern purehookset hooks_drawmap;
+#line 4549 "graph.cpp"
+  extern transmatrix actual_view_transform;
+#line 4551 "graph.cpp"
   ld wall_radar(cell *c, transmatrix T, transmatrix LPe, ld max);
-#line 4567 "graph.cpp"
+#line 4571 "graph.cpp"
   void make_actual_view();
-#line 4608 "graph.cpp"
-  shiftmatrix cview(ld base_shift IS(0));
 #line 4612 "graph.cpp"
+  shiftmatrix cview(ld base_shift IS(0));
+#line 4616 "graph.cpp"
   void precise_mouseover();
-#line 4649 "graph.cpp"
-  extern transmatrix Viewbase;
-#line 4651 "graph.cpp"
-  extern bool no_wall_rendering;
 #line 4653 "graph.cpp"
+  extern transmatrix Viewbase;
+#line 4655 "graph.cpp"
+  extern bool no_wall_rendering;
+#line 4657 "graph.cpp"
   void drawthemap();
-#line 4830 "graph.cpp"
+#line 4834 "graph.cpp"
   void drawmovestar(double dx, double dy);
-#line 4885 "graph.cpp"
-  extern bool dronemode;
 #line 4889 "graph.cpp"
-  extern int corner_centering;
-#line 4891 "graph.cpp"
-  extern bool permaside;
+  extern bool dronemode;
 #line 4893 "graph.cpp"
+  extern int corner_centering;
+#line 4895 "graph.cpp"
+  extern bool permaside;
+#line 4897 "graph.cpp"
   void calcparam();
-#line 4956 "graph.cpp"
-  extern function<void()> wrap_drawfullmap;
 #line 4960 "graph.cpp"
+  extern function<void()> wrap_drawfullmap;
+#line 4964 "graph.cpp"
   void drawfullmap();
-#line 5029 "graph.cpp"
+#line 5033 "graph.cpp"
   extern bool just_refreshing;
-#line 5031 "graph.cpp"
+#line 5035 "graph.cpp"
   void gamescreen(int _darken);
-#line 5143 "graph.cpp"
+#line 5147 "graph.cpp"
   extern bool nohelp;
-#line 5144 "graph.cpp"
+#line 5148 "graph.cpp"
   extern bool no_find_player;
-#line 5146 "graph.cpp"
+#line 5150 "graph.cpp"
   void normalscreen();
-#line 5175 "graph.cpp"
+#line 5179 "graph.cpp"
   extern vector< function<void()> > screens;
-#line 5178 "graph.cpp"
+#line 5182 "graph.cpp"
   template<class T> void pushScreen(const T& x) { screens.push_back(x); } 
   inline void popScreen() { if(isize(screens)>1) screens.pop_back(); }
   inline void popScreenAll() { while(isize(screens)>1) popScreen(); }
   typedef void (*cfunction)();
-#line 5184 "graph.cpp"
+#line 5188 "graph.cpp"
   cfunction current_screen_cfunction();
-#line 5191 "graph.cpp"
+#line 5195 "graph.cpp"
   namespace sm {
   static const int NORMAL = 1;
   static const int MISSION = 2;
@@ -3317,15 +3317,15 @@ namespace hr {
   static const int EXPANSION = (1<<16);
   static const int HEXEDIT = (1<<17);
   }
-#line 5212 "graph.cpp"
+#line 5216 "graph.cpp"
   extern int cmode;
-#line 5214 "graph.cpp"
+#line 5218 "graph.cpp"
   void drawscreen();
-#line 5326 "graph.cpp"
+#line 5330 "graph.cpp"
   void restartGraph();
-#line 5336 "graph.cpp"
+#line 5340 "graph.cpp"
   void clearAnimations();
-#line 5361 "graph.cpp"
+#line 5365 "graph.cpp"
   struct animation {
   int ltick;
   double footphase;
@@ -3341,29 +3341,29 @@ namespace hr {
   #define LAYER_BIG   0 // for worms and krakens
   #define LAYER_SMALL 1 // for others
   #define LAYER_BOAT  2 // mark that a boat has moved
-#line 5378 "graph.cpp"
+#line 5382 "graph.cpp"
   extern array<map<cell*, animation>, ANIMLAYERS> animations;
-#line 5380 "graph.cpp"
+#line 5384 "graph.cpp"
   int revhint(cell *c, int hint);
-#line 5385 "graph.cpp"
+#line 5389 "graph.cpp"
   transmatrix adj(const movei& m);
-#line 5390 "graph.cpp"
+#line 5394 "graph.cpp"
   transmatrix iadj(const movei& m);
-#line 5395 "graph.cpp"
+#line 5399 "graph.cpp"
   void animateMovement(const movei& m, int layer);
-#line 5418 "graph.cpp"
+#line 5422 "graph.cpp"
   void animateAttackOrHug(const movei& m, int layer, int phase, ld ratio, ld delta);
-#line 5430 "graph.cpp"
-  void animateAttack(const movei& m, int layer);
 #line 5434 "graph.cpp"
+  void animateAttack(const movei& m, int layer);
+#line 5438 "graph.cpp"
   void animateHug(const movei& m, int layer);
-#line 5440 "graph.cpp"
+#line 5444 "graph.cpp"
   void indAnimateMovement(const movei& m, int layer);
-#line 5460 "graph.cpp"
+#line 5464 "graph.cpp"
   void commitAnimations(int layer);
-#line 5467 "graph.cpp"
+#line 5471 "graph.cpp"
   void drawBug(const cellwalker& cw, color_t col);
-#line 5477 "graph.cpp"
+#line 5481 "graph.cpp"
   bool inscreenrange(cell *c);
 
   // implemented in: textures.cpp
@@ -4898,69 +4898,69 @@ namespace hr {
 
 #line 12 "attack.cpp"
   extern array<int, motypes> kills;
-#line 64 "attack.cpp"
+#line 65 "attack.cpp"
   int tkills();
-#line 70 "attack.cpp"
+#line 71 "attack.cpp"
   int killtypes();
-#line 77 "attack.cpp"
+#line 78 "attack.cpp"
   bool arrow_stuns(eMonster m);
-#line 81 "attack.cpp"
+#line 82 "attack.cpp"
   bool canAttack(cell *c1, eMonster m1, cell *c2, eMonster m2, flagtype flags);
-#line 178 "attack.cpp"
+#line 179 "attack.cpp"
   bool petrify(cell *c, eWall walltype, eMonster m);
-#line 218 "attack.cpp"
+#line 219 "attack.cpp"
   void killIvy(cell *c, eMonster who);
-#line 228 "attack.cpp"
+#line 229 "attack.cpp"
   void prespill(cell* c, eWall t, int rad, cell *from);
-#line 308 "attack.cpp"
+#line 309 "attack.cpp"
   void spillfix(cell* c, eWall t, int rad);
-#line 317 "attack.cpp"
+#line 318 "attack.cpp"
   void spill(cell* c, eWall t, int rad);
-#line 321 "attack.cpp"
+#line 322 "attack.cpp"
   void degradeDemons();
-#line 337 "attack.cpp"
+#line 338 "attack.cpp"
   void stunMonster(cell *c2, eMonster killer, flagtype flags);
-#line 369 "attack.cpp"
+#line 370 "attack.cpp"
   bool attackJustStuns(cell *c2, flagtype f, eMonster attacker);
-#line 382 "attack.cpp"
+#line 383 "attack.cpp"
   void minerEffect(cell *c);
-#line 405 "attack.cpp"
+#line 406 "attack.cpp"
   void killMutantIvy(cell *c, eMonster who);
-#line 415 "attack.cpp"
+#line 416 "attack.cpp"
   bignum ivy_total();
-#line 421 "attack.cpp"
+#line 422 "attack.cpp"
   void killMonster(cell *c, eMonster who, flagtype deathflags IS(0));
-#line 824 "attack.cpp"
+#line 829 "attack.cpp"
   void fightmessage(eMonster victim, eMonster attacker, bool stun, flagtype flags);
-#line 930 "attack.cpp"
-  bool notthateasy(eMonster m);
 #line 935 "attack.cpp"
+  bool notthateasy(eMonster m);
+#line 940 "attack.cpp"
   bool attackMonster(cell *c, flagtype flags, eMonster killer);
-#line 1013 "attack.cpp"
+#line 1018 "attack.cpp"
   void pushMonster(const movei& mi);
-#line 1042 "attack.cpp"
-  void killFriendlyIvy();
 #line 1047 "attack.cpp"
+  void killFriendlyIvy();
+#line 1052 "attack.cpp"
   bool monsterPushable(cell *c2);
-#line 1051 "attack.cpp"
+#line 1056 "attack.cpp"
   bool should_switchplace(cell *c1, cell *c2);
-#line 1059 "attack.cpp"
+#line 1064 "attack.cpp"
   bool switchplace_prevent(cell *c1, cell *c2, bool checkonly);
-#line 1070 "attack.cpp"
+#line 1075 "attack.cpp"
   void handle_switchplaces(cell *c1, cell *c2, bool& switchplaces);
-#line 1098 "attack.cpp"
+#line 1103 "attack.cpp"
   bool flashWouldKill(cell *c, flagtype extra);
-#line 1114 "attack.cpp"
+#line 1119 "attack.cpp"
   vector<cell*> gun_targets(cell *c);
-#line 1128 "attack.cpp"
+#line 1133 "attack.cpp"
   void fallMonster(cell *c, flagtype flags IS(0));
-#line 1132 "attack.cpp"
+#line 1137 "attack.cpp"
   void killHardcorePlayer(int id, flagtype flags);
-#line 1160 "attack.cpp"
+#line 1165 "attack.cpp"
   void killThePlayer(eMonster m, int id, flagtype flags);
-#line 1192 "attack.cpp"
+#line 1197 "attack.cpp"
   void killThePlayerAt(eMonster m, cell *c, flagtype flags);
-#line 1199 "attack.cpp"
+#line 1204 "attack.cpp"
   template<class T> void do_swords(movei mi, eMonster who, const T& f) {
   for(int bb=0; bb<2; bb++) if(who == moPlayer && sword::orbcount(bb)) {
   cell *sf = sword::pos(mi.s, sword::dir[multi::cpid], bb);
@@ -4978,7 +4978,7 @@ namespace hr {
   }
   }
   }
-#line 1220 "attack.cpp"
+#line 1225 "attack.cpp"
   void stabbingAttack(movei mi, eMonster who, int bonuskill IS(0));
 
   // implemented in: barriers.cpp
@@ -5602,11 +5602,11 @@ namespace hr {
   dd.V = V;
   dd.draw();
   }
-#line 611 "celldrawer.cpp"
+#line 612 "celldrawer.cpp"
   color_t w_monochromatize(color_t x, int d);
-#line 817 "celldrawer.cpp"
+#line 818 "celldrawer.cpp"
   int grid_prec();
-#line 1748 "celldrawer.cpp"
+#line 1751 "celldrawer.cpp"
   struct downseek_t {
   cell *best;
   hyperpoint total;
@@ -5621,10 +5621,10 @@ namespace hr {
   best = nullptr;
   }
   };
-#line 1764 "celldrawer.cpp"
+#line 1767 "celldrawer.cpp"
   extern downseek_t downseek;
   #if CAP_SHAPES
-#line 2532 "celldrawer.cpp"
+#line 2535 "celldrawer.cpp"
   extern shiftmatrix ocwtV;
   #endif
 
@@ -5773,31 +5773,31 @@ namespace hr {
     void dissolve_brownian(cell *c, int x);
 #line 94 "complex2.cpp"
     void dissolve(cell *c, int x);
-#line 109 "complex2.cpp"
+#line 112 "complex2.cpp"
     void init(cell *c);
-#line 115 "complex2.cpp"
+#line 118 "complex2.cpp"
     void init_further(cell *c);
-#line 149 "complex2.cpp"
+#line 152 "complex2.cpp"
     void apply_futures(cell *c);
-#line 160 "complex2.cpp"
+#line 163 "complex2.cpp"
     void build(cell *c, int d);
-#line 178 "complex2.cpp"
+#line 181 "complex2.cpp"
     extern colortable colors;
-#line 180 "complex2.cpp"
+#line 183 "complex2.cpp"
     color_t get_color(int y);
-#line 188 "complex2.cpp"
+#line 191 "complex2.cpp"
     color_t& get_color_edit(int y);
     }
   namespace westwall {
-#line 208 "complex2.cpp"
+#line 211 "complex2.cpp"
     void switchTreasure(cell *c);
-#line 217 "complex2.cpp"
+#line 220 "complex2.cpp"
     int coastvalEdge1(cell *c);
-#line 258 "complex2.cpp"
+#line 261 "complex2.cpp"
     void move();
     }
   namespace variant {
-#line 279 "complex2.cpp"
+#line 282 "complex2.cpp"
     struct feature {
     color_t color_change;
     int rate_change;
@@ -5808,70 +5808,70 @@ namespace hr {
     extern array<feature, 21> features;
     }
   namespace camelot {
-#line 332 "complex2.cpp"
-    extern int knighted;
 #line 335 "complex2.cpp"
+    extern int knighted;
+#line 338 "complex2.cpp"
     extern int anthraxBonus;
-#line 354 "complex2.cpp"
+#line 357 "complex2.cpp"
     string knight_name(cell *c);
-#line 359 "complex2.cpp"
+#line 362 "complex2.cpp"
     void move_knight(cell *c1, cell *c2);
-#line 367 "complex2.cpp"
+#line 370 "complex2.cpp"
     void roundTableMessage(cell *c2);
-#line 394 "complex2.cpp"
+#line 397 "complex2.cpp"
     void knightFlavorMessage(cell *c2);
     }
   namespace mine {
-#line 512 "complex2.cpp"
+#line 515 "complex2.cpp"
     extern int victory_time;
-#line 514 "complex2.cpp"
+#line 517 "complex2.cpp"
     void count_status();
-#line 526 "complex2.cpp"
+#line 529 "complex2.cpp"
     bool in_minesweeper();
-#line 530 "complex2.cpp"
+#line 533 "complex2.cpp"
     bool uncoverMines(cell *c, int lev, int dist, bool just_checking);
-#line 571 "complex2.cpp"
+#line 574 "complex2.cpp"
     bool mightBeMine(cell *c);
-#line 575 "complex2.cpp"
+#line 578 "complex2.cpp"
     extern hookset<bool(cell*)> hooks_mark;
-#line 577 "complex2.cpp"
+#line 580 "complex2.cpp"
     void performMarkCommand(cell *c);
-#line 596 "complex2.cpp"
+#line 599 "complex2.cpp"
     bool marked_mine(cell *c);
-#line 603 "complex2.cpp"
+#line 606 "complex2.cpp"
     bool marked_safe(cell *c);
-#line 610 "complex2.cpp"
+#line 613 "complex2.cpp"
     bool safe();
-#line 614 "complex2.cpp"
+#line 617 "complex2.cpp"
     void uncover_full(cell *c2);
-#line 632 "complex2.cpp"
+#line 635 "complex2.cpp"
     void auto_teleport_charges();
     }
   namespace terracotta {
-#line 643 "complex2.cpp"
+#line 646 "complex2.cpp"
     // predictable or not
     static constexpr bool randterra = false;
-#line 647 "complex2.cpp"
+#line 650 "complex2.cpp"
     void check(cell *c);
-#line 668 "complex2.cpp"
+#line 671 "complex2.cpp"
     void check_around(cell *c);
-#line 673 "complex2.cpp"
+#line 676 "complex2.cpp"
     void check();
     }
   namespace ambush {
-#line 688 "complex2.cpp"
+#line 691 "complex2.cpp"
     void mark(cell *c, manual_celllister& cl);
-#line 695 "complex2.cpp"
-    extern int distance;
-#line 696 "complex2.cpp"
-    extern bool ambushed;
 #line 698 "complex2.cpp"
+    extern int distance;
+#line 699 "complex2.cpp"
+    extern bool ambushed;
+#line 701 "complex2.cpp"
     void check_state();
-#line 735 "complex2.cpp"
+#line 738 "complex2.cpp"
     extern int fixed_size;
-#line 737 "complex2.cpp"
+#line 740 "complex2.cpp"
     int size(cell *c, eItem what);
-#line 825 "complex2.cpp"
+#line 828 "complex2.cpp"
     void ambush(cell *c, int dogs);
     }
   #endif
@@ -8174,29 +8174,29 @@ namespace hr {
   void placeGolem(cell *on, cell *moveto, eMonster m);
 #line 296 "game.cpp"
   bool multiRevival(cell *on, cell *moveto);
-#line 317 "game.cpp"
+#line 318 "game.cpp"
   extern eMonster passive_switch;
-#line 319 "game.cpp"
+#line 320 "game.cpp"
   void checkSwitch();
-#line 323 "game.cpp"
+#line 324 "game.cpp"
   void pushThumper(const movei& mi);
-#line 371 "game.cpp"
+#line 372 "game.cpp"
   bool canPushThumperOn(cell *tgt, cell *thumper, cell *player);
-#line 384 "game.cpp"
+#line 385 "game.cpp"
   void activateActiv(cell *c, bool msg);
-#line 404 "game.cpp"
+#line 405 "game.cpp"
   void fixWormBug(cell *c);
-#line 412 "game.cpp"
+#line 413 "game.cpp"
   bool isWormhead(eMonster m);
-#line 418 "game.cpp"
+#line 419 "game.cpp"
   cell *worm_tohead(cell *c);
-#line 425 "game.cpp"
+#line 426 "game.cpp"
   cell *wormhead(cell *c);
-#line 441 "game.cpp"
+#line 442 "game.cpp"
   bool sameMonster(cell *c1, cell *c2);
-#line 451 "game.cpp"
+#line 452 "game.cpp"
   eMonster haveMount();
-#line 459 "game.cpp"
+#line 460 "game.cpp"
   eMonster otherpole(eMonster m);
 
   // implemented in: geom-exp.cpp
@@ -9217,15 +9217,15 @@ namespace hr {
   void gen_eclectic_monster(cell *c);
 #line 270 "landgen.cpp"
   void giantLandSwitch(cell *c, int d, cell *from);
-#line 2767 "landgen.cpp"
+#line 2810 "landgen.cpp"
   void repairLandgen(cell *c);
-#line 2819 "landgen.cpp"
+#line 2862 "landgen.cpp"
   void setland_randomwalk(cell *c);
-#line 2829 "landgen.cpp"
+#line 2872 "landgen.cpp"
   void set_land_for_geometry(cell *c);
-#line 2847 "landgen.cpp"
+#line 2890 "landgen.cpp"
   extern hookset<bool(cell *c, int d, cell *from)> hooks_cellgen;
-#line 2849 "landgen.cpp"
+#line 2892 "landgen.cpp"
   void setdist(cell *c, int d, cell *from);
 
   // implemented in: landlock.cpp
@@ -9296,16 +9296,16 @@ namespace hr {
   extern hookset<eLand(eLand)> hooks_nextland;
 #line 282 "landlock.cpp"
   eLand getNewLand(eLand old);
-#line 485 "landlock.cpp"
+#line 486 "landlock.cpp"
   extern vector<eLand> land_over;
-#line 508 "landlock.cpp"
+#line 509 "landlock.cpp"
   extern vector<eLand> landlist;
-#line 511 "landlock.cpp"
+#line 512 "landlock.cpp"
   template<class T> void generateLandList(T t) {
   landlist.clear();
   for(auto l: land_over) if(t(l)) landlist.push_back(l);    
   }
-#line 518 "landlock.cpp"
+#line 519 "landlock.cpp"
   namespace lv {
   static const flagtype appears_in_geom_exp = 1;
   static const flagtype display_error_message = 2;
@@ -9320,15 +9320,15 @@ namespace hr {
   flagtype flags;
   string msg;
   };
-#line 534 "landlock.cpp"
+#line 535 "landlock.cpp"
   eLand getLandForList(cell *c);
-#line 547 "landlock.cpp"
+#line 548 "landlock.cpp"
   bool isLandIngame(eLand l);
-#line 626 "landlock.cpp"
+#line 627 "landlock.cpp"
   extern int old_daily_id;
-#line 630 "landlock.cpp"
+#line 631 "landlock.cpp"
   extern const int frog_when;
-#line 633 "landlock.cpp"
+#line 634 "landlock.cpp"
   land_validity_t& land_validity(eLand l);
 
   // implemented in: language-data.cpp
@@ -9385,75 +9385,77 @@ namespace hr {
   bool thruVine(cell *c, cell *c2);
 #line 143 "mapeffects.cpp"
   void useup(cell *c);
-#line 158 "mapeffects.cpp"
+#line 162 "mapeffects.cpp"
   bool earthFloor(cell *c);
-#line 204 "mapeffects.cpp"
+#line 208 "mapeffects.cpp"
   bool earthWall(cell *c);
-#line 276 "mapeffects.cpp"
+#line 280 "mapeffects.cpp"
   bool snakepile(cell *c, eMonster m);
-#line 347 "mapeffects.cpp"
+#line 351 "mapeffects.cpp"
   bool makeflame(cell *c, int timeout, bool checkonly);
-#line 423 "mapeffects.cpp"
+#line 427 "mapeffects.cpp"
   void explosion(cell *c, int power, int central);
-#line 469 "mapeffects.cpp"
+#line 473 "mapeffects.cpp"
   void explodeMine(cell *c);
-#line 481 "mapeffects.cpp"
+#line 485 "mapeffects.cpp"
   void explodeBarrel(cell *c);
-#line 490 "mapeffects.cpp"
+#line 494 "mapeffects.cpp"
   bool mayExplodeMine(cell *c, eMonster who);
-#line 497 "mapeffects.cpp"
+#line 501 "mapeffects.cpp"
   void flameHalfvine(cell *c, int val);
-#line 507 "mapeffects.cpp"
+#line 511 "mapeffects.cpp"
   bool destroyHalfvine(cell *c, eWall newwall IS(waNone), int tval IS(6));
-#line 523 "mapeffects.cpp"
+#line 527 "mapeffects.cpp"
   int coastvalEdge(cell *c);
-#line 525 "mapeffects.cpp"
+#line 529 "mapeffects.cpp"
   int gravityLevel(cell *c);
-#line 535 "mapeffects.cpp"
+#line 539 "mapeffects.cpp"
   int gravityLevelDiff(cell *c, cell *d);
-#line 553 "mapeffects.cpp"
+#line 557 "mapeffects.cpp"
   bool canUnstable(eWall w, flagtype flags);
-#line 559 "mapeffects.cpp"
+#line 563 "mapeffects.cpp"
   bool cellEdgeUnstable(cell *c, flagtype flags IS(0));
-#line 583 "mapeffects.cpp"
-  extern int tidalsize, tide[200];
 #line 585 "mapeffects.cpp"
+  void weakenCloud(cell *c);
+#line 593 "mapeffects.cpp"
+  extern int tidalsize, tide[200];
+#line 595 "mapeffects.cpp"
   void calcTidalPhase();
-#line 617 "mapeffects.cpp"
+#line 627 "mapeffects.cpp"
   int tidespeed();
-#line 621 "mapeffects.cpp"
+#line 631 "mapeffects.cpp"
   extern bool recalcTide;
-#line 624 "mapeffects.cpp"
+#line 634 "mapeffects.cpp"
   #define SEADIST LHU.bytes[0]
   #define LANDDIST LHU.bytes[1]
   #define CHAOSPARAM LHU.bytes[2]
   #if CAP_FIELD
-#line 630 "mapeffects.cpp"
+#line 640 "mapeffects.cpp"
   int lavatide(cell *c, int t);
   #endif
-#line 636 "mapeffects.cpp"
+#line 646 "mapeffects.cpp"
   void checkTide(cell *c);
-#line 686 "mapeffects.cpp"
+#line 696 "mapeffects.cpp"
   bool makeEmpty(cell *c);
-#line 766 "mapeffects.cpp"
+#line 776 "mapeffects.cpp"
   void toggleGates(cell *c, eWall type, int rad);
-#line 794 "mapeffects.cpp"
+#line 804 "mapeffects.cpp"
   int toggle_radius(eWall type);
-#line 801 "mapeffects.cpp"
-  void toggleGates(cell *ct, eWall type);
 #line 811 "mapeffects.cpp"
+  void toggleGates(cell *ct, eWall type);
+#line 821 "mapeffects.cpp"
   void destroyTrapsOn(cell *c);
-#line 819 "mapeffects.cpp"
+#line 829 "mapeffects.cpp"
   void destroyTrapsAround(cell *c);
-#line 823 "mapeffects.cpp"
+#line 833 "mapeffects.cpp"
   void destroyWeakBranch(cell *cf, cell *ct, eMonster who);
-#line 842 "mapeffects.cpp"
+#line 852 "mapeffects.cpp"
   bool isCentralTrap(cell *c);
-#line 849 "mapeffects.cpp"
+#line 859 "mapeffects.cpp"
   array<cell*, 5> traplimits(cell *c);
-#line 867 "mapeffects.cpp"
+#line 877 "mapeffects.cpp"
   void activateArrowTrap(cell *c);
-#line 878 "mapeffects.cpp"
+#line 888 "mapeffects.cpp"
   template<class T> 
   movei determinePush(cellwalker who, int subdir, const T& valid) {
   if(subdir != 1 && subdir != -1) {
@@ -9494,11 +9496,11 @@ namespace hr {
   }
   return movei(c2, NO_SPACE);
   }
-#line 921 "mapeffects.cpp"
+#line 931 "mapeffects.cpp"
   void explodeAround(cell *c);
-#line 961 "mapeffects.cpp"
+#line 971 "mapeffects.cpp"
   bool earthMove(const movei& mi);
-#line 975 "mapeffects.cpp"
+#line 985 "mapeffects.cpp"
   bool cellDangerous(cell *c);
 
   // implemented in: menus.cpp
@@ -9703,7 +9705,7 @@ namespace hr {
   eItem wanderingTreasure(cell *c);
 #line 320 "monstergen.cpp"
   void wandering();
-#line 771 "monstergen.cpp"
+#line 776 "monstergen.cpp"
   void generateSnake(cell *c, int i, int snakecolor);
 
   // implemented in: monstermove.cpp
@@ -9730,123 +9732,123 @@ namespace hr {
   void moveEffect(const movei& mi, eMonster m);
 #line 107 "monstermove.cpp"
   void moveMonster(const movei& mi);
-#line 331 "monstermove.cpp"
+#line 332 "monstermove.cpp"
   bool cannotGo(eMonster m, cell *c);
-#line 337 "monstermove.cpp"
+#line 338 "monstermove.cpp"
   bool wantsToStay(eMonster m);
-#line 341 "monstermove.cpp"
+#line 342 "monstermove.cpp"
   bool batsAfraid(cell *c);
-#line 360 "monstermove.cpp"
+#line 361 "monstermove.cpp"
   int angledist(int t, int d1, int d2);
-#line 368 "monstermove.cpp"
+#line 369 "monstermove.cpp"
   int angledistButterfly(int t, int d1, int d2, bool mirrored);
-#line 375 "monstermove.cpp"
+#line 376 "monstermove.cpp"
   int angledist(cell *c, int d1, int d2);
-#line 379 "monstermove.cpp"
+#line 380 "monstermove.cpp"
   bool anglestraight(cell *c, int d1, int d2);
-#line 383 "monstermove.cpp"
+#line 384 "monstermove.cpp"
   int bulldist(cell *c);
-#line 389 "monstermove.cpp"
+#line 390 "monstermove.cpp"
   int bulldistance(cell *c, cell *d);
-#line 396 "monstermove.cpp"
+#line 397 "monstermove.cpp"
   int landheattype(cell *c);
-#line 406 "monstermove.cpp"
+#line 407 "monstermove.cpp"
   int moveval(cell *c1, cell *c2, int d, flagtype mf);
-#line 529 "monstermove.cpp"
+#line 530 "monstermove.cpp"
   int stayval(cell *c, flagtype mf);
-#line 555 "monstermove.cpp"
+#line 556 "monstermove.cpp"
   int totalbulldistance(cell *c, int k);
-#line 565 "monstermove.cpp"
+#line 566 "monstermove.cpp"
   void determinizeBull(cell *c, vector<int>& posdir);
-#line 582 "monstermove.cpp"
+#line 583 "monstermove.cpp"
   int determinizeBullPush(cellwalker bull);
-#line 598 "monstermove.cpp"
+#line 599 "monstermove.cpp"
   int pickMoveDirection(cell *c, flagtype mf);
-#line 617 "monstermove.cpp"
+#line 618 "monstermove.cpp"
   int pickDownDirection(cell *c, flagtype mf);
-#line 639 "monstermove.cpp"
+#line 640 "monstermove.cpp"
   void beastAttack(cell *c, bool player, bool targetdir);
-#line 675 "monstermove.cpp"
+#line 676 "monstermove.cpp"
   extern bool quantum;
-#line 677 "monstermove.cpp"
+#line 678 "monstermove.cpp"
   cell *moveNormal(cell *c, flagtype mf);
-#line 762 "monstermove.cpp"
+#line 763 "monstermove.cpp"
   void mountmove(const movei& mi, bool fp);
-#line 787 "monstermove.cpp"
+#line 788 "monstermove.cpp"
   void moveWorm(cell *c);
-#line 927 "monstermove.cpp"
+#line 928 "monstermove.cpp"
   void ivynext(cell *c);
-#line 963 "monstermove.cpp"
+#line 964 "monstermove.cpp"
   void removeIvy(cell *c);
-#line 979 "monstermove.cpp"
+#line 980 "monstermove.cpp"
   void moveivy();
-#line 1049 "monstermove.cpp"
+#line 1050 "monstermove.cpp"
   bool isTargetOrAdjacent(cell *c);
-#line 1056 "monstermove.cpp"
+#line 1057 "monstermove.cpp"
   void groupmove2(const movei& mi, eMonster movtype, flagtype mf);
-#line 1155 "monstermove.cpp"
+#line 1156 "monstermove.cpp"
   void groupmove(eMonster movtype, flagtype mf);
-#line 1220 "monstermove.cpp"
+#line 1223 "monstermove.cpp"
   void moveHexSnake(const movei& mi, bool mounted);
-#line 1246 "monstermove.cpp"
+#line 1249 "monstermove.cpp"
   void snakeAttack(cell *c, bool mounted);
-#line 1257 "monstermove.cpp"
+#line 1260 "monstermove.cpp"
   bool goodmount(cell *c, bool mounted);
-#line 1262 "monstermove.cpp"
+#line 1265 "monstermove.cpp"
   int inpair(cell *c, int colorpair);
-#line 1266 "monstermove.cpp"
+#line 1269 "monstermove.cpp"
   int snake_pair(cell *c);
-#line 1274 "monstermove.cpp"
+#line 1277 "monstermove.cpp"
   void hexvisit(cell *c, cell *from, int d, bool mounted, int colorpair);
-#line 1309 "monstermove.cpp"
+#line 1312 "monstermove.cpp"
   void movehex(bool mounted, int colorpair);
-#line 1338 "monstermove.cpp"
+#line 1341 "monstermove.cpp"
   void movehex_rest(bool mounted);
-#line 1369 "monstermove.cpp"
+#line 1372 "monstermove.cpp"
   void movemutant();
-#line 1417 "monstermove.cpp"
-  #define SHSIZE 16
 #line 1420 "monstermove.cpp"
-  extern vector<array<cell*, MAXPLAYER>> shpos;
-#line 1421 "monstermove.cpp"
-  extern int cshpos;
+  #define SHSIZE 16
 #line 1423 "monstermove.cpp"
+  extern vector<array<cell*, MAXPLAYER>> shpos;
+#line 1424 "monstermove.cpp"
+  extern int cshpos;
+#line 1426 "monstermove.cpp"
   extern cell *lastmountpos[MAXPLAYER];
-#line 1425 "monstermove.cpp"
+#line 1428 "monstermove.cpp"
   void clearshadow();
-#line 1431 "monstermove.cpp"
+#line 1434 "monstermove.cpp"
   void moveshadow();
-#line 1462 "monstermove.cpp"
+#line 1465 "monstermove.cpp"
   void moveghosts();
-#line 1519 "monstermove.cpp"
+#line 1522 "monstermove.cpp"
   int stayvalue(eMonster m, cell *c);
-#line 1529 "monstermove.cpp"
+#line 1532 "monstermove.cpp"
   int movevalue(eMonster m, cell *c, int dir, flagtype flags);
-#line 1636 "monstermove.cpp"
+#line 1639 "monstermove.cpp"
   void movegolems(flagtype flags);
-#line 1734 "monstermove.cpp"
+#line 1737 "monstermove.cpp"
   void moveButterflies();
-#line 1757 "monstermove.cpp"
+#line 1760 "monstermove.cpp"
   void specialMoves();
-#line 1893 "monstermove.cpp"
+#line 1896 "monstermove.cpp"
   void moveworms();
-#line 1902 "monstermove.cpp"
+#line 1905 "monstermove.cpp"
   void refreshFriend(cell *c);
-#line 1911 "monstermove.cpp"
+#line 1914 "monstermove.cpp"
   void consMove(cell *c, eMonster param);
-#line 1937 "monstermove.cpp"
+#line 1940 "monstermove.cpp"
   void moveNormals(eMonster param);
-#line 1958 "monstermove.cpp"
+#line 1961 "monstermove.cpp"
   void movehex_all();
-#line 1967 "monstermove.cpp"
+#line 1970 "monstermove.cpp"
   void movemonsters();
-#line 2094 "monstermove.cpp"
-  bool nogoSlow(cell *to, cell *from);
 #line 2100 "monstermove.cpp"
+  bool nogoSlow(cell *to, cell *from);
+#line 2106 "monstermove.cpp"
   void beastcrash(cell *c, cell *beast);
-#line 2132 "monstermove.cpp"
+#line 2138 "monstermove.cpp"
   void stayEffect(cell *c);
-#line 2145 "monstermove.cpp"
+#line 2151 "monstermove.cpp"
   int realstuntime(cell *c);
 
   // implemented in: multigame.cpp
@@ -10373,37 +10375,37 @@ namespace hr {
   };
 #line 80 "orbgen.cpp"
   extern vector<orbinfo> orbinfos;
-#line 171 "orbgen.cpp"
+#line 172 "orbgen.cpp"
   eItem nativeOrbType(eLand l);
-#line 191 "orbgen.cpp"
+#line 192 "orbgen.cpp"
   extern string olrDescriptions[];
-#line 212 "orbgen.cpp"
+#line 213 "orbgen.cpp"
   eOrbLandRelation getOLR(eItem it, eLand l);
-#line 398 "orbgen.cpp"
+#line 403 "orbgen.cpp"
   int orbsUnlocked();
-#line 406 "orbgen.cpp"
+#line 411 "orbgen.cpp"
   ld orbprizefun(int tr);
-#line 412 "orbgen.cpp"
+#line 417 "orbgen.cpp"
   ld orbcrossfun(int tr);
-#line 419 "orbgen.cpp"
+#line 424 "orbgen.cpp"
   bool buildPrizeMirror(cell *c, int freq);
-#line 428 "orbgen.cpp"
+#line 433 "orbgen.cpp"
   extern cellwalker cwt;
-#line 431 "orbgen.cpp"
+#line 436 "orbgen.cpp"
   eLand getPrizeLand(cell *c IS(cwt.at));
-#line 439 "orbgen.cpp"
+#line 444 "orbgen.cpp"
   void placePrizeOrb(cell *c);
-#line 489 "orbgen.cpp"
+#line 495 "orbgen.cpp"
   int treasureForLocal();
-#line 493 "orbgen.cpp"
+#line 499 "orbgen.cpp"
   bool extra_safety_for_memory(cell *c);
-#line 503 "orbgen.cpp"
+#line 509 "orbgen.cpp"
   void placeLocalOrbs(cell *c);
-#line 544 "orbgen.cpp"
+#line 550 "orbgen.cpp"
   void placeLocalSpecial(cell *c, int outof, int loc IS(1), int priz IS(1));
-#line 553 "orbgen.cpp"
+#line 559 "orbgen.cpp"
   void placeCrossroadOrbs(cell *c);
-#line 589 "orbgen.cpp"
+#line 595 "orbgen.cpp"
   void placeOceanOrbs(cell *c);
 
   // implemented in: orbs.cpp
@@ -10434,67 +10436,67 @@ namespace hr {
   void reduceOrbPowerAlways(eItem it);
 #line 104 "orbs.cpp"
   void reduceOrbPowers();
-#line 176 "orbs.cpp"
+#line 178 "orbs.cpp"
   void flashAlchemist(cell *c);
-#line 185 "orbs.cpp"
+#line 187 "orbs.cpp"
   void flashCell(cell *c, eMonster killer, flagtype flags);
-#line 248 "orbs.cpp"
+#line 250 "orbs.cpp"
   void activateFlashFrom(cell *cf, eMonster who, flagtype flags);
-#line 264 "orbs.cpp"
+#line 266 "orbs.cpp"
   bool distanceBound(cell *c1, cell *c2, int d);
-#line 272 "orbs.cpp"
+#line 274 "orbs.cpp"
   void checkFreedom(cell *cf);
-#line 306 "orbs.cpp"
+#line 308 "orbs.cpp"
   void activateFlash();
-#line 323 "orbs.cpp"
+#line 325 "orbs.cpp"
   bool reflectingBarrierAt(cell *c);
-#line 330 "orbs.cpp"
+#line 332 "orbs.cpp"
   bool reflectingBarrierAt(cellwalker& c, int d);
-#line 346 "orbs.cpp"
+#line 348 "orbs.cpp"
   void killAdjacentSharks(cell *c);
-#line 370 "orbs.cpp"
+#line 372 "orbs.cpp"
   void castLightningBolt(cellwalker lig);
-#line 503 "orbs.cpp"
+#line 505 "orbs.cpp"
   void castLightningBoltFrom(cell *c);
-#line 507 "orbs.cpp"
+#line 509 "orbs.cpp"
   void activateLightning();
-#line 531 "orbs.cpp"
+#line 533 "orbs.cpp"
   bool haveRangedTarget();
-#line 558 "orbs.cpp"
+#line 560 "orbs.cpp"
   void teleportTo(cell *dest);
-#line 606 "orbs.cpp"
+#line 608 "orbs.cpp"
   bool jumpTo(orbAction a, cell *dest, eItem byWhat, int bonuskill IS(0), eMonster dashmon IS(moNone));
-#line 747 "orbs.cpp"
+#line 749 "orbs.cpp"
   eMonster summonedAt(cell *dest);
-#line 960 "orbs.cpp"
+#line 962 "orbs.cpp"
   void checkStunKill(cell *dest);
-#line 1072 "orbs.cpp"
+#line 1074 "orbs.cpp"
   bool monstersnearO(orbAction a, cell *c);
-#line 1081 "orbs.cpp"
+#line 1083 "orbs.cpp"
   bool isCheck(orbAction a);
-#line 1082 "orbs.cpp"
-  bool isWeakCheck(orbAction a);
 #line 1084 "orbs.cpp"
+  bool isWeakCheck(orbAction a);
+#line 1086 "orbs.cpp"
   movei blowoff_destination(cell *c, int& di);
-#line 1095 "orbs.cpp"
+#line 1097 "orbs.cpp"
   int check_jump(cell *cf, cell *ct, flagtype flags, cell*& jumpthru);
-#line 1111 "orbs.cpp"
+#line 1113 "orbs.cpp"
   int check_phase(cell *cf, cell *ct, flagtype flags, cell*& jumpthru);
-#line 1127 "orbs.cpp"
+#line 1129 "orbs.cpp"
   cell *common_neighbor(cell *cf, cell *ct);
-#line 1134 "orbs.cpp"
+#line 1136 "orbs.cpp"
   void apply_impact(cell *c);
-#line 1146 "orbs.cpp"
+#line 1148 "orbs.cpp"
   int check_vault(cell *cf, cell *ct, flagtype flags, cell*& jumpthru);
-#line 1164 "orbs.cpp"
+#line 1166 "orbs.cpp"
   eItem targetRangedOrb(cell *c, orbAction a);
-#line 1479 "orbs.cpp"
+#line 1481 "orbs.cpp"
   int orbcharges(eItem it);
-#line 1579 "orbs.cpp"
+#line 1582 "orbs.cpp"
   bool isShmupLifeOrb(eItem it);
-#line 1587 "orbs.cpp"
+#line 1590 "orbs.cpp"
   void makelava(cell *c, int i);
-#line 1595 "orbs.cpp"
+#line 1598 "orbs.cpp"
   void orboflava(int i);
 
   // implemented in: passable.cpp
@@ -10552,51 +10554,52 @@ namespace hr {
   #define P_PHASE      Flag(33) // phasing movement
   #define P_PULLMAGNET Flag(34) // pull the other part of the magnet
   #define P_FLATBEAST  Flag(35) // Flat Beast's own moves (can't go in gravity or climb rock)
-#line 135 "passable.cpp"
+  #define P_LEVITATE   Flag(36) // Orb of Levitation, less powerful than Aether
+#line 136 "passable.cpp"
   bool passable(cell *w, cell *from, flagtype flags);
-#line 287 "passable.cpp"
+#line 288 "passable.cpp"
   extern vector<pair<cell*, int> > airmap;
-#line 289 "passable.cpp"
+#line 290 "passable.cpp"
   int airdist(cell *c);
-#line 297 "passable.cpp"
+#line 298 "passable.cpp"
   ld calcAirdir(cell *c);
-#line 321 "passable.cpp"
+#line 322 "passable.cpp"
   bool againstWind(cell *cto, cell *cfrom);
-#line 340 "passable.cpp"
+#line 341 "passable.cpp"
   bool ghostmove(eMonster m, cell* to, cell* from, flagtype extra);
-#line 412 "passable.cpp"
+#line 413 "passable.cpp"
   bool canPushStatueOn(cell *c, flagtype flags);
-#line 418 "passable.cpp"
+#line 419 "passable.cpp"
   void moveBoat(const movei& mi);
-#line 425 "passable.cpp"
+#line 426 "passable.cpp"
   void moveBoatIfUsingOne(const movei& mi);
-#line 453 "passable.cpp"
+#line 454 "passable.cpp"
   bool againstPair(cell *c1, cell *c2, eMonster m);
-#line 459 "passable.cpp"
+#line 460 "passable.cpp"
   bool notNearItem(cell *c);
-#line 464 "passable.cpp"
+#line 465 "passable.cpp"
   bool isNeighbor1(cell *f, cell *w);
-#line 468 "passable.cpp"
+#line 469 "passable.cpp"
   bool passable_for(eMonster m, cell *w, cell *from, flagtype extra);
-#line 572 "passable.cpp"
+#line 573 "passable.cpp"
   eMonster movegroup(eMonster m);
-#line 574 "passable.cpp"
+#line 575 "passable.cpp"
   bool logical_adjacent(cell *c1, eMonster m1, cell *c2);
-#line 588 "passable.cpp"
+#line 589 "passable.cpp"
   void buildAirmap();
-#line 604 "passable.cpp"
+#line 605 "passable.cpp"
   extern int rosewave, rosephase;
-#line 613 "passable.cpp"
+#line 614 "passable.cpp"
   extern map<cell*, int> rosemap;
-#line 615 "passable.cpp"
+#line 616 "passable.cpp"
   int rosedist(cell *c);
-#line 623 "passable.cpp"
+#line 624 "passable.cpp"
   bool againstRose(cell *cfrom, cell *cto);
-#line 629 "passable.cpp"
+#line 630 "passable.cpp"
   bool withRose(cell *cfrom, cell *cto);
-#line 635 "passable.cpp"
+#line 636 "passable.cpp"
   void buildRosemap();
-#line 672 "passable.cpp"
+#line 673 "passable.cpp"
   bool scentResistant();
 
   // implemented in: patterns.cpp
@@ -12055,7 +12058,7 @@ namespace hr {
     /** \brief the amount of boxes reserved for each hr::score item */
     #define MAXBOX 500
     /** \brief currently used boxes in hr::score */
-    #define POSSCORE 389
+    #define POSSCORE 394
     /** \brief a struct to keep local score from an earlier game */
     struct score {
     /** \brief version used */
@@ -12081,61 +12084,61 @@ namespace hr {
     extern modecode_t saved_modecode;
 #line 543 "system.cpp"
     void applyBoxes();
-#line 899 "system.cpp"
+#line 906 "system.cpp"
     void saveBox();
     }
   namespace anticheat {
-#line 952 "system.cpp"
+#line 959 "system.cpp"
     extern int certify(const string& s, int a, int b, int c, int d IS(0));
     }
   #if !CAP_CERTIFY
   namespace anticheat {
-#line 961 "system.cpp"
+#line 968 "system.cpp"
     extern bool tampered;
     }
   #endif
-#line 972 "system.cpp"
+#line 979 "system.cpp"
   void remove_emergency_save();
-#line 981 "system.cpp"
+#line 988 "system.cpp"
   void saveStats(bool emergency IS(false));
-#line 1104 "system.cpp"
+#line 1111 "system.cpp"
   void loadsave();
   #endif
-#line 1249 "system.cpp"
+#line 1256 "system.cpp"
   void stop_game();
-#line 1288 "system.cpp"
+#line 1295 "system.cpp"
   eModel default_model();
-#line 1294 "system.cpp"
+#line 1301 "system.cpp"
   extern purehookset hooks_on_geometry_change;
-#line 1296 "system.cpp"
+#line 1303 "system.cpp"
   void set_geometry(eGeometry target);
-#line 1344 "system.cpp"
+#line 1351 "system.cpp"
   void set_variation(eVariation target);
-#line 1365 "system.cpp"
+#line 1372 "system.cpp"
   void switch_game_mode(char switchWhat);
-#line 1493 "system.cpp"
+#line 1500 "system.cpp"
   void start_game();
-#line 1538 "system.cpp"
+#line 1545 "system.cpp"
   void restart_game(char switchWhat IS(rg::nothing));
-#line 1546 "system.cpp"
-  void stop_game_and_switch_mode(char switchWhat IS(rg::nothing));
-#line 1551 "system.cpp"
-  extern purehookset hooks_clearmemory;
 #line 1553 "system.cpp"
-  void clearMemory();
-#line 1557 "system.cpp"
-  extern bool fixseed;
+  void stop_game_and_switch_mode(char switchWhat IS(rg::nothing));
 #line 1558 "system.cpp"
-  extern int startseed;
+  extern purehookset hooks_clearmemory;
 #line 1560 "system.cpp"
-  extern eLand firstland0;
-#line 1562 "system.cpp"
-  extern purehookset hooks_initialize;
+  void clearMemory();
 #line 1564 "system.cpp"
+  extern bool fixseed;
+#line 1565 "system.cpp"
+  extern int startseed;
+#line 1567 "system.cpp"
+  extern eLand firstland0;
+#line 1569 "system.cpp"
+  extern purehookset hooks_initialize;
+#line 1571 "system.cpp"
   void initAll();
-#line 1598 "system.cpp"
+#line 1605 "system.cpp"
   extern purehookset hooks_final_cleanup;
-#line 1600 "system.cpp"
+#line 1607 "system.cpp"
   void finishAll();
 
   // implemented in: tour.cpp

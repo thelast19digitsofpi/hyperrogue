@@ -417,7 +417,7 @@ EX namespace scores {
 /** \brief the amount of boxes reserved for each hr::score item */
 #define MAXBOX 500
 /** \brief currently used boxes in hr::score */
-#define POSSCORE 389
+#define POSSCORE 394
 /** \brief a struct to keep local score from an earlier game */
 struct score {
   /** \brief version used */
@@ -888,6 +888,13 @@ EX void applyBoxes() {
   list_invorb();
   
   applyBoxI(itRoomsTreasure);
+  applyBoxM(moFlat);
+  
+  applyBoxOrb(itOrbLevitate);
+  applyBoxI(itCloudsTreasure);
+  applyBoxM(moVillager);
+  
+  list_invorb();
 
   applyBoxNum(saved_modecode, "modecode");
 

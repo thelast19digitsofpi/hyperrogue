@@ -150,7 +150,11 @@ EX void useup(cell *c) {
     else if(c->wall == waTempBridge || c->wall == waTempBridgeBlocked || c->wall == waBurningDock || c->land == laBrownian)
       placeWater(c, c);
     else {
-      c->wall = c->land == laCaribbean ? waCIsland2 : waNone;
+      if(c->land == laClouds) {
+        if (c->wall == waFire) c->wall = waChasm;
+        else c->wall = waWeakCloud;
+        }
+      else c->wall = c->land == laCaribbean ? waCIsland2 : waNone;
       }
     }
   }
@@ -576,6 +580,12 @@ EX bool cellEdgeUnstable(cell *c, flagtype flags IS(0)) {
       }
     }
   return true;
+  }
+
+EX void weakenCloud(cell *c) {
+  if(c->wall == waStrongCloud) c->wall = waMediumCloud;
+  else if(c->wall == waMediumCloud) c->wall = waWeakCloud;
+  else if(c->wall == waWeakCloud) c->wall = waChasm;
   }
 
 int tidalphase;

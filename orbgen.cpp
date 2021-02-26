@@ -165,6 +165,7 @@ EX vector<orbinfo> orbinfos = {
   {orbgenflags::S_GUEST, laWet, 1200, 0, itOrbFish},
   {orbgenflags::S_GUEST, laWet, 1200, 0, itOrbAether},
   {orbgenflags::S_GUEST, laWet, 1200, 0, itOrbFrog},
+  {orbgenflags::S_NATIVE, laClouds, 1000, 2000, itOrbLevitate},
   {orbgenflags::S_NATIVE, laWhirlpool, 0, 2000, itOrbWater}, // needs to be last
   };
 
@@ -392,6 +393,10 @@ EX eOrbLandRelation getOLR(eItem it, eLand l) {
       return olrForbidden;
     }
   
+  // anything with chasms or water or gravity
+  if(it == itOrbLevitate && !among(l, laMotion, laPalace, laZebra, laReptile, laWet, laOcean, laWarpCoast, laWarpSea, laLivefjord, laCaribbean, laBrownian, laWhirlpool, laRedRock, laDragon, laTortoise, laWhirlwind, laFrog, laEclectic, laVariant, laTerracotta, laHell, laCocytus, laRooms, laClouds) && !isElemental(l) && !isGravityLand(l))
+    return olrUseless;
+  
   return olrPrize25;
   }
 
@@ -442,7 +447,7 @@ EX void placePrizeOrb(cell *c) {
   
   eLand l = getPrizeLand(c);
 
-  // these two lands would have too much orbs according to normal rules
+  // these lands would have too much orbs according to normal rules
   if(l == laPalace && hrand(100) >= 20) return;
   if(l == laPrincessQuest && hrand(100) >= 20) return;
   if(l == laGraveyard && hrand(100) >= 15) return;
@@ -450,6 +455,7 @@ EX void placePrizeOrb(cell *c) {
   if(l == laLivefjord && hrand(100) >= 35) return;
   if(l == laMinefield && hrand(100) >= 25) return;
   if(l == laElementalWall && hrand(100) >= 25) return;
+  if(l == laRooms && hrand(100) >= 80) return;
 
   for(auto& oi: orbinfos) {
     if(!(oi.flags & orbgenflags::GLOBAL25)) continue;
